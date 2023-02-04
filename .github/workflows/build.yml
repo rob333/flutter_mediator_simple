@@ -35,12 +35,12 @@ jobs:
       - uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 2
-      # - uses: actions/setup-java@v1
-      #   with:
-      #     java-version: "12.x"
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
       #     # java-version: ${{ matrix.java }}
 
-      - uses: subosito/flutter-action@v2.7.1
+      - uses: subosito/flutter-action@v1
         with:
           channel: beta
           # channel: ${{ matrix.channel }}
@@ -52,6 +52,12 @@ jobs:
 
       # - name: Add pub cache to ENV
       #   run: echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
+
+      - name: Add pub cache bin to PATH
+        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
+      - name: Add pub cache to ENV
+        run: echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
 
       # Get flutter dependencies.
       - name: Install dependencies
