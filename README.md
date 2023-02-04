@@ -64,14 +64,12 @@ For help getting started with Flutter, view the online [documentation](https://f
 
 ## How to use:
 
-1. Declare variable which needs to be managed with `.rx` suffix, to it turn into mediator variable.
+1. Declare variable which needs to be managed with `.rx` suffix, to make it a mediator variable.
    <br>**Suggest to put mediator variables into file [var.dart][example/lib/var.dart] then import it(with show,hide capability of the import command).**
 
 2. Create `Subscriber` widgets. Any mediator variables used inside the `Subscriber` widget will automatically rebuild when the mediator variable updates.
 
 &emsp; [Table of Contents]
-
-[example/lib/main.dart][]
 
 ---
 
@@ -349,13 +347,13 @@ Notify to rebuild with the aspects of the mediator variable.
 
 Used when the type of the mediator variable is of type `Class`.
 
-Mediator variable use setter to automatically notify the rebuild. When it comes to Class variable and add items by methods, then `notify` need to be used to notify the rebuild.
+Mediator variable uses setter to automatically notify the rebuild. When it comes to Class variable and add items by methods, then `notify` needs to be used to notify the rebuild.
 
 &emsp; [Table of Contents]
 
 
 ## VS Code snippet
-Use VS Code snippet to help typing boilerplates.
+Use VS Code snippet to help typing the boilerplates.
 Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnippet],
 ```json
 {
