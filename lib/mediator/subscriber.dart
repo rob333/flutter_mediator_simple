@@ -23,16 +23,14 @@ void _register(BuildContext context, SubscriberTagSet aspects) {
 
 void _futureQueue() {
   assert(_isSetRebuild == true);
-  Future(
-    () {
-      if (_rebuildSet.isNotEmpty) {
-        _shouldRebuild();
+  Future.value(0).then((value) {
+    if (_rebuildSet.isNotEmpty) {
+      _shouldRebuild();
 
-        _rebuildSet.clear();
-        _isSetRebuild = false;
-      }
-    },
-  );
+      _rebuildSet.clear();
+      _isSetRebuild = false;
+    }
+  });
 }
 
 void _shouldRebuild() {
