@@ -67,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage>
     const Tab(icon: Icon(Icons.local_airport_outlined), text: "locale"),
   ];
   final myPages = [
-    const Intpage(),
-    const Intpage(),
-    const Intpage(),
+    const IntPage(),
+    const IntPage(),
+    const IntPage(),
     const ListPage(),
     const LocalePage(),
   ];
@@ -133,8 +133,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 }
 
-class Intpage extends StatelessWidget {
-  const Intpage({super.key});
+class IntPage extends StatelessWidget {
+  const IntPage({super.key});
 
   @override
   Widget build(BuildContext context) {

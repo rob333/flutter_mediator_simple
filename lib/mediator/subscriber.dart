@@ -55,8 +55,9 @@ void _shouldRebuild() {
   }
 }
 
-/// Subscriber widget class: to register Mediator Variables for automatic rebuild.
+/// Subscriber widget class
 ///
+/// To register Mediator Variables for automatic rebuild.
 class Subscriber extends StatefulWidget {
   /// Method for rx getter: register the widget with aspects.
   static void addRxAspects(SubscriberTagSet aspects) {
@@ -107,45 +108,3 @@ class _SubscriberState extends State<Subscriber> {
     return child;
   }
 }
-
-/// `StatelessWidget` version of `Subscriber` class:
-// class Subscriber extends StatelessWidget {
-//   /// Method for rx getter: register the widget with aspects.
-//   static void addRxAspects(SubscriberTagSet aspects) {
-//     if (_isCapturing) {
-//       
-//       _capturingSet.addAll(aspects);
-//     }
-//   }
-
-//   /// Method for rx setter: notify to rebuild widget with aspects.
-//   static void setToRebuild(SubscriberTagSet aspects) {
-//     
-//     _rebuildSet.addAll(aspects);
-//     if (!_isSetRebuild) {
-//       _isSetRebuild = true;
-//       _futureQueue();
-//     }
-//   }
-
-//   /// class members:
-//   final Widget Function() builder;
-
-//   /// Contrustor:
-//   const Subscriber({
-//     super.key,
-//     required this.builder,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     _isCapturing = true;
-//     final child = builder();
-//     _register(context, _capturingSet);
-//     _isCapturing = false;
-
-//     _capturingSet.clear();
-
-//     return child;
-//   }
-// }

@@ -23,29 +23,6 @@
             "program": "example/lib/main.dart",
             "type": "dart",
             "flutterMode": "release"
-        },
-        {
-            "name": "example",
-            "cwd": "example",
-            "program": "example/lib/main.dart",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "example (profile mode)",
-            "cwd": "example",
-            "request": "launch",
-            "program": "example/lib/main.dart",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "example (release mode)",
-            "cwd": "example",
-            "request": "launch",
-            "program": "example/lib/main.dart",
-            "type": "dart",
-            "flutterMode": "release"
         }
     ]
 }
