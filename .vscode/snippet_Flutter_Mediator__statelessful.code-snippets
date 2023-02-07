@@ -56,7 +56,7 @@
 		"body": [
 		  "class $1 extends StatefulWidget {",
 		  "\t@override",
-		  "\t_$1State createState() => _$1State();",
+		  "\tState<$1> createState() => _$1State();",
 		  "}",
 	
 		  "class _$1State extends State<$1> {",
