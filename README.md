@@ -65,9 +65,9 @@ For help getting started with Flutter, view the online [documentation](https://f
 ## How to use
 
 1. Declare variable which needs to be managed with `.rx` suffix, to make it a mediator variable.
-   <br>**Suggest to put mediator variables into file [var.dart][example/lib/var.dart] then import it(with show,hide capability of the import command).**
+   <br>**Suggest to put mediator variables into the file [var.dart][example/lib/var.dart] then import it(with show,hide capability of the import).**
 
-2. Create `Subscriber` widgets. Any mediator variables used inside the `Subscriber` widget will automatically rebuild when the mediator variable updates.
+2. Create `Subscriber` widgets. Any mediator variables used inside the `Subscriber` widget will automatically rebuild the widget when updated.
 
 &emsp; [Table of Contents]
 
@@ -182,7 +182,7 @@ void updateListItem() {
 }
 ```
 
-Use `notify` to notify the Subscribe widget to rebuild when the mediator variable is set to update.
+Use `notify` to notify the Subscribe widget to rebuild when the mediator variable is updated.
 
 &emsp; [Table of Contents]
 
@@ -228,7 +228,7 @@ flutter:
     - assets/flutter_i18n/
 ```
 
-Step 2: Install persistence package [shared_preferences](https://pub.dev/packages/shared_preferences)
+Step 2: Install the persistence package [shared_preferences](https://pub.dev/packages/shared_preferences)
 
 Step 3: Declare a mediator variable `_locale` and SharedPreferences in [var.dart][example/lib/var.dart].
 
@@ -347,7 +347,7 @@ Notify to rebuild with the aspects of the mediator variable.
 
 Used when the type of the mediator variable is of type `Class`.
 
-Mediator variable uses setter to automatically notify the rebuild. When it comes to Class and add items by method, then `notify` is needed to inform the rebuild.
+Mediator variable uses setter to automatically notify the rebuild. When it comes to a class variable and adds item by method, then `notify` is needed to inform the rebuild.
 
 &emsp; [Table of Contents]
 
