@@ -63,10 +63,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Get example module dependencies.
-      - name: Install example dependencies
-        run: |
-          cd example && flutter pub get && cd -
+      # # Get example module dependencies.
+      # - name: Install example dependencies
+      #   run: |
+      #     cd example && flutter pub get && cd -
+      # Get module dependencies.
+      - name: Install dependencies
+        run: flutter pub get
 
       # Check for any formatting issues in the code.
       # - name: Check format
@@ -76,8 +79,11 @@ jobs:
       - name: Analyze
         run: flutter analyze .
 
-      # Run widget tests for our flutter project.
-      # - run: flutter test
+      # # Run widget tests for our flutter project.
+      # # - run: flutter test
+      # - name: Run flutter test
+      #   run: |
+      #     cd example && flutter test && cd -
+      # Run widget tests
       - name: Run flutter test
-        run: |
-          cd example && flutter test && cd -
+        run: flutter test
