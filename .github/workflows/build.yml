@@ -59,17 +59,15 @@ jobs:
       - name: Add pub cache to ENV
         run: echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
 
-      # Get flutter dependencies.
-      - name: Install dependencies
-        run: flutter pub get
+      # # Get flutter dependencies.
+      # - name: Install dependencies
+      #   run: flutter pub get
 
       # # Get example module dependencies.
       # - name: Install example dependencies
       #   run: |
       #     cd example && flutter pub get && cd -
       # Get module dependencies.
-      - name: Install dependencies
-        run: flutter pub get
 
       # Check for any formatting issues in the code.
       # - name: Check format
