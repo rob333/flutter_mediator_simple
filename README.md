@@ -65,7 +65,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 ## How to use
 
 1. Declare variable which needs to be managed with `.rx` suffix, to make it a mediator variable.
-   <br>**Suggest to put mediator variables into the file [var.dart][example/lib/var.dart] then import it(with show,hide capability of the import).**
+   <br>**Suggest to put mediator variables into the file [var.dart][example/lib/var.dart] and then import it(with show, hide capability of the import).**
 
 2. Create `Subscriber` widgets. Any mediator variables used inside the `Subscriber` widget will automatically rebuild the widget when updated.
 

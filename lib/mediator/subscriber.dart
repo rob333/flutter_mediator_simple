@@ -39,9 +39,15 @@ void _shouldRebuild() {
   _subscriberMap.forEach((context, aspects) {
     final elem = context as Element;
     if (elem.mounted) {
-      if (_rebuildSet.intersection(aspects).isNotEmpty) {
-        elem.markNeedsBuild();
+      for (var rset in _rebuildSet) {
+        if (aspects.contains(rset)) {
+          elem.markNeedsBuild();
+          break;
+        }
       }
+      // if (_rebuildSet.intersection(aspects).isNotEmpty) {
+      //   elem.markNeedsBuild();
+      // }
     } else {
       toRemove.add(context);
     }
