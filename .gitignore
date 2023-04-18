@@ -30,7 +30,7 @@ migrate_working_dir/
 build/
 linux/
 windows/
-ios/
-android/
 
 rx_iter.dart
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/Generated.xcconfig
