@@ -55,25 +55,32 @@ void main() {
     expect(find.text('int3: 1'), findsOneWidget);
     expect(find.text('int2: 2'), findsOneWidget);
     expect(find.text('int1: 3'), findsOneWidget);
-
-    /// List Tab
-    ///
-    // goto list tab
-    // await tester.tap(find.byIcon(Icons.power_input_rounded));
-    // await tester.pump();
-    // // Verify that list starts empty.
-    // expect(find.byType(GridTile), findsNothing);
-
-    // // Tap the '+' icon and trigger a frame.
-    // await tester.tap(find.byIcon(Icons.add));
-    // await tester.pump();
-    // // Verify that list item incremented.
-    // expect(find.byType(GridTile), findsOneWidget);
-
-    // // Tap the '+' icon and trigger a frame.
-    // await tester.tap(find.byIcon(Icons.add));
-    // await tester.pump();
-    // // Verify that list item incremented.
-    // expect(find.byType(GridTile), findsNWidgets(2));
   });
+
+  // testWidgets('Mediator Simple - GridTile increments test',
+  //     (WidgetTester tester) async {
+  //   // Build our app and trigger a frame.
+  //   await tester.pumpWidget(const MyApp());
+
+  //   /// List Tab
+  //   ///
+  //   /// goto list tab
+  //   await tester
+  //       .tap(find.byIcon(Icons.power_input_rounded, skipOffstage: false));
+  //   await tester.pump();
+  //   // Verify that list starts empty.
+  //   expect(find.byType(GridTile, skipOffstage: false), findsNothing);
+
+  //   // Tap the '+' icon and trigger a frame.
+  //   await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
+  //   await tester.pump();
+  //   // Verify that list item incremented.
+  //   expect(find.byType(GridTile, skipOffstage: false), findsOneWidget);
+
+  //   // Tap the '+' icon and trigger a frame.
+  //   await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
+  //   await tester.pump();
+  //   // Verify that list item incremented.
+  //   expect(find.byType(GridTile, skipOffstage: false), findsNWidgets(2));
+  // }, skip: false);
 }

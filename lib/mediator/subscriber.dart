@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 
 typedef SubscriberTag = int;
@@ -13,17 +15,19 @@ bool _isCapturing = false;
 bool _isSetRebuild = false;
 
 void _register(BuildContext context, SubscriberTagSet aspects) {
-  var set = _subscriberMap[context];
-  if (set == null) {
-    set = {};
-    _subscriberMap[context] = set;
-  }
+  final set = _subscriberMap[context]!;
+  // if (set == null) {
+  //   set = {};
+  //   _subscriberMap[context] = set;
+  // }
   set.addAll(aspects);
 }
 
 void _futureQueue() {
   assert(_isSetRebuild == true);
-  Future.value(0).then((value) {
+  // scheduleMicrotask(() {
+  // Future.value(0).then((value) {
+  Future.microtask(() {
     if (_rebuildSet.isNotEmpty) {
       _shouldRebuild();
 
@@ -95,6 +99,14 @@ class Subscriber extends StatefulWidget {
 }
 
 class _SubscriberState extends State<Subscriber> {
+  @override
+  void initState() {
+    super.initState();
+
+    assert(_subscriberMap[context] == null);
+    _subscriberMap[context] = {};
+  }
+
   @override
   void dispose() {
     _subscriberMap.remove(context);

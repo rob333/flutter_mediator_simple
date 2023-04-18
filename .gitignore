@@ -30,5 +30,7 @@ migrate_working_dir/
 build/
 linux/
 windows/
+ios/
+android/
 
 rx_iter.dart
