@@ -4,6 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/loaders/decoders/json_decode_strategy.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'var.dart';
 
@@ -150,7 +151,10 @@ class IntPage extends StatelessWidget {
               return Text(
                 'int1: $int1', // using the `_int1` mediator variable
                 style: Theme.of(context).textTheme.headlineMedium,
-              );
+              )
+                  .animate(key: ValueKey(int1))
+                  .fade(duration: 250.ms)
+                  .scale(delay: 250.ms);
             },
           ),
           Subscriber(

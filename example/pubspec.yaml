@@ -13,7 +13,8 @@ dependencies:
   flutter_mediator_simple:
     path: ../
   flutter_i18n: ^0.32.4
-  shared_preferences: ^2.0.17 
+  shared_preferences: ^2.1.0 
+  flutter_animate: ^4.1.1+1
 
 dev_dependencies:
   flutter_test:
