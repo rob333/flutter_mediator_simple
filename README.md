@@ -37,7 +37,8 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [Use Case 3: Indirect use of Mediator Variable and Persistence](#use-case-3-indirect-use-of-mediator-variable-and-persistence)
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
-  - [VS Code snippet](#vs-code-snippet)
+  - [VS Code Snippet](#vs-code-snippet)
+  - [State Management with Animation](#state-management-with-animation)
   - [Changelog](#changelog)
   - [License](#license)
 
@@ -352,7 +353,7 @@ Mediator variable uses setter to automatically notify the rebuild. When it comes
 &emsp; [Table of Contents]
 
 
-## VS Code snippet
+## VS Code Snippet
 Use VS Code snippet to help typing the boilerplates.
 Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnippet],
 ```json
@@ -401,6 +402,25 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
 &emsp; [Table of Contents]
 
 
+## State Management with Animation
+By using [flutter_animate], animation can easily add to the mediator variable. If animation is needed every time the mediator variable changes, just add a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
+```dart
+  Subscriber(
+    builder: () {
+      return Text(
+        'int1: $int1', // using the `_int1` mediator variable
+        style: Theme.of(context).textTheme.headlineMedium,
+      )
+          .animate(key: ValueKey(int1))
+          .fade(duration: 250.ms)
+          .scale(delay: 250.ms);
+    },
+```
+
+
+&emsp; [Table of Contents]
+
+
 <br>
 
 [table of contents]: #table-of-contents
@@ -409,6 +429,7 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
 [pubspec.yaml]: https://github.com/rob333/flutter_mediator_simple/blob/main/example/pubspec.yaml
 [flutter_i18n]: https://github.com/rob333/flutter_mediator_simple/tree/main/example/assets/flutter_i18n
 [vscSnippet]: https://github.com/rob333/flutter_mediator_simple/blob/main/.vscode/snippet_Flutter_Mediator__statelessful.code-snippets
+[flutter_animate]: https://pub.dev/packages/flutter_animate
 
 
 ## Changelog
