@@ -241,10 +241,10 @@ class LocalePage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 35),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             RadioGroup(),
             LocalePanel(),
           ],
