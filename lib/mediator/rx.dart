@@ -1,6 +1,100 @@
 import 'package:flutter/widgets.dart';
-import '../flutter_mediator_simple.dart';
 
+import 'dart:async';
+
+typedef SubscriberTag = int;
+typedef SubscriberTagSet = Set<SubscriberTag>;
+typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
+
+/// Static Methods/Top Level functions
+final List<List<BuildContext>> _subscriberList = [];
+final SubscriberTagSet _rebuildSet = {};
+
+BuildContext? _currentBuildingContext;
+bool _isSetRebuild = false;
+
+void _regFutureQueue() {
+  assert(_isSetRebuild == true);
+  // scheduleMicrotask(() {
+  // Future.value(0).then((value) {
+  Future.microtask(() {
+    assert(_rebuildSet.isNotEmpty);
+
+    _shouldRebuild();
+    _rebuildSet.clear();
+    _isSetRebuild = false;
+  });
+}
+
+void _shouldRebuild() {
+  assert(_rebuildSet.isNotEmpty);
+
+  for (final aspect in _rebuildSet) {
+    final contextList = _subscriberList[aspect];
+    final cloneList = [...contextList];
+    for (final context in cloneList) {
+      final elem = context as Element;
+      if (elem.mounted) {
+        if (!elem.dirty) {
+          elem.markNeedsBuild();
+        }
+      } else {
+        contextList.remove(context);
+      }
+    }
+  }
+}
+
+/// Subscriber widget class
+///
+/// To register Mediator Variables for automatic rebuild.
+class Subscriber extends StatefulWidget {
+  /// Method for rx getter: register the widget with aspects.
+  static void _addRxAspects(SubscriberTagSet aspects) {
+    if (_currentBuildingContext != null) {
+      for (final aspect in aspects) {
+        final contextList = _subscriberList[aspect];
+        contextList.add(_currentBuildingContext!);
+      }
+    }
+  }
+
+  /// Method for rx setter: notify to rebuild widget with aspects.
+  static void setToRebuild(SubscriberTagSet aspects) {
+    _rebuildSet.addAll(aspects);
+    if (!_isSetRebuild) {
+      _isSetRebuild = true;
+      _regFutureQueue();
+    }
+  }
+
+  /// class members:
+  final Widget Function() builder;
+
+  /// Contrustor:
+  const Subscriber({
+    super.key,
+    required this.builder,
+  });
+
+  @override
+  State<Subscriber> createState() => _SubscriberState();
+}
+
+class _SubscriberState extends State<Subscriber> {
+  @override
+  Widget build(BuildContext context) {
+    _currentBuildingContext = context;
+    final child = widget.builder();
+    _currentBuildingContext = null;
+
+    return child;
+  }
+}
+
+/// ***
+/// Class Rx
+/// ***
 class RxImpl<T> {
   /// Member:
   static SubscriberTag rxTagCounter = 0;
@@ -13,6 +107,11 @@ class RxImpl<T> {
     assert(_value is! Type);
     final tag = rxTagCounter++;
     rxAspects.add(tag);
+
+    // add context list to _subscriberList
+    // final List<BuildContext> contextList = [];
+    _subscriberList.add([]);
+    assert(_subscriberList.length == rxTagCounter);
   }
 
   /// The underlying value with type of T
@@ -20,7 +119,7 @@ class RxImpl<T> {
 
   /// Getter of the Rx Object:
   T get value {
-    Subscriber.addRxAspects(rxAspects);
+    Subscriber._addRxAspects(rxAspects);
     return _value;
   }
 
@@ -43,7 +142,7 @@ class RxImpl<T> {
 
   /// Add the aspects of this Mediator Variable to update set.
   void touch() {
-    Subscriber.addRxAspects(rxAspects);
+    Subscriber._addRxAspects(rxAspects);
   }
 
   /// To create a Subscriber widget for indirect use of the mediator variable.

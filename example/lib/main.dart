@@ -62,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = [
     const Tab(icon: Icon(Icons.cloud_outlined), text: "int1"),
-    const Tab(icon: Icon(Icons.beach_access_sharp), text: "int2"),
-    const Tab(icon: Icon(Icons.brightness_5_sharp), text: "int3"),
+    const Tab(icon: Icon(Icons.beach_access_sharp), text: "int1,2"),
+    const Tab(icon: Icon(Icons.brightness_5_sharp), text: "int1,2,3"),
     const Tab(icon: Icon(Icons.power_input_rounded), text: "list"),
     const Tab(icon: Icon(Icons.local_airport_outlined), text: "locale"),
   ];
@@ -112,9 +112,12 @@ class _MyHomePageState extends State<MyHomePage>
                 int1++;
                 break;
               case 1:
+                int1++;
                 int2++;
                 break;
               case 2:
+                int1++;
+                int2++;
                 int3++;
                 break;
               case 3:
@@ -153,8 +156,8 @@ class IntPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               )
                   .animate(key: ValueKey(int1))
-                  .fade(duration: 250.ms)
-                  .scale(delay: 250.ms);
+                  .fade(duration: 125.ms)
+                  .scale(delay: 125.ms);
             },
           ),
           Subscriber(
@@ -230,7 +233,7 @@ class LocalePage extends StatelessWidget {
         const SizedBox(height: 25),
         Subscriber(
           builder: () => Text(
-            'You have pressed the button at the first page $int1 times',
+            'int1: $int1',
             style: const TextStyle(fontSize: 16),
           ),
         ),

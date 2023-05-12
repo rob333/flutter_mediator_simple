@@ -1,5 +1,4 @@
 import 'rx.dart';
-import 'subscriber.dart';
 
 class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
   RxSet(Set<E> initial) : super(initial);

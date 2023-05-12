@@ -88,9 +88,12 @@ class _MyHomePageState extends State<MyHomePage>
                 int1++;
                 break;
               case 1:
+                int1++;
                 int2++;
                 break;
               case 2:
+                int1++;
+                int2++;
                 int3++;
                 break;
               case 3:

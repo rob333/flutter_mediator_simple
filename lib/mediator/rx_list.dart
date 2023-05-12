@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'rx.dart';
-import 'subscriber.dart';
 
 class RxList<E> extends RxImpl<List<E>> implements List<E> {
   RxList(List<E> initial) : super(initial);

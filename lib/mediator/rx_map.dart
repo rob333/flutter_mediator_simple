@@ -1,5 +1,4 @@
 import 'rx.dart';
-import 'subscriber.dart';
 
 class RxMap<K, V> extends RxImpl<Map<K, V>> implements Map<K, V> {
   RxMap(Map<K, V> initial) : super(initial);

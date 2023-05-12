@@ -40,21 +40,31 @@ void main() {
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
     expect(find.textContaining(': 0'), findsOneWidget);
+    expect(find.text('int1: 5'), findsOneWidget);
     expect(find.text('int2: 2'), findsOneWidget);
-    expect(find.text('int1: 3'), findsOneWidget);
 
     /// tab3
     await tester.tap(find.byIcon(Icons.brightness_5_sharp));
     await tester.pump();
     expect(find.textContaining(': 0'), findsOneWidget);
+    expect(find.text('int1: 5'), findsOneWidget);
     expect(find.text('int2: 2'), findsOneWidget);
-    expect(find.text('int1: 3'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
+    expect(find.text('int1: 6'), findsOneWidget);
+    expect(find.text('int2: 3'), findsOneWidget);
     expect(find.text('int3: 1'), findsOneWidget);
-    expect(find.text('int2: 2'), findsOneWidget);
-    expect(find.text('int1: 3'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+    expect(find.text('int1: 9'), findsOneWidget);
+    expect(find.text('int2: 6'), findsOneWidget);
+    expect(find.text('int3: 4'), findsOneWidget);
   });
 
   // testWidgets('Mediator Simple - GridTile increments test',

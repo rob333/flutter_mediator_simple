@@ -50,7 +50,7 @@ Add the following dependency to `pubspec.yaml` of the flutter app.
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.0.1"
+  flutter_mediator_simple: "^1.0.2"
 ```
 
 Import flutter_mediator_simple in files that will be used:
@@ -412,8 +412,8 @@ By using [flutter_animate], animation can easily add to the mediator variable. I
         style: Theme.of(context).textTheme.headlineMedium,
       )
           .animate(key: ValueKey(int1))
-          .fade(duration: 250.ms)
-          .scale(delay: 250.ms);
+          .fade(duration: 125.ms)
+          .scale(delay: 125.ms);
     },
 ```
 
