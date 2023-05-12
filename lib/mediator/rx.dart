@@ -7,7 +7,7 @@ typedef SubscriberTagSet = Set<SubscriberTag>;
 typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level functions
-final List<List<BuildContext>> _subscriberList = [];
+final List<Set<BuildContext>> _subscriberList = [];
 final SubscriberTagSet _rebuildSet = {};
 
 BuildContext? _currentBuildingContext;
@@ -30,16 +30,17 @@ void _shouldRebuild() {
   assert(_rebuildSet.isNotEmpty);
 
   for (final aspect in _rebuildSet) {
-    final contextList = _subscriberList[aspect];
-    final cloneList = [...contextList];
-    for (final context in cloneList) {
+    final contextSet = _subscriberList[aspect];
+    final cloneSet = [...contextSet];
+
+    for (final context in cloneSet) {
       final elem = context as Element;
       if (elem.mounted) {
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
       } else {
-        contextList.remove(context);
+        contextSet.remove(context);
       }
     }
   }
@@ -109,8 +110,8 @@ class RxImpl<T> {
     rxAspects.add(tag);
 
     // add context list to _subscriberList
-    // final List<BuildContext> contextList = [];
-    _subscriberList.add([]);
+    // final Set<BuildContext> contextList = {};
+    _subscriberList.add({});
     assert(_subscriberList.length == rxTagCounter);
   }
 
