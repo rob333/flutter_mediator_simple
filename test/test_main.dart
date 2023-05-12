@@ -38,8 +38,8 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = [
     const Tab(icon: Icon(Icons.cloud_outlined), text: "int1"),
-    const Tab(icon: Icon(Icons.beach_access_sharp), text: "int2"),
-    const Tab(icon: Icon(Icons.brightness_5_sharp), text: "int3"),
+    const Tab(icon: Icon(Icons.beach_access_sharp), text: "int1,2"),
+    const Tab(icon: Icon(Icons.brightness_5_sharp), text: "int1,2,3"),
     const Tab(icon: Icon(Icons.power_input_rounded), text: "list"),
     // const Tab(icon: Icon(Icons.local_airport_outlined), text: "locale"),
   ];

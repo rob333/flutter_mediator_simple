@@ -9,10 +9,10 @@ typedef _SubscriberTagSet = Set<_SubscriberTag>;
 typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level functions
-final List<Set<BuildContext>> _subscriberList = [];
+final List<Set<Element>> _subscriberList = [];
 final _SubscriberTagSet _rebuildSet = {};
 
-BuildContext? _currentBuildingContext;
+Element? _currentBuildingElement;
 bool _isSetRebuild = false;
 
 void _regFutureQueue() {
@@ -32,16 +32,15 @@ void _shouldRebuild() {
   assert(_rebuildSet.isNotEmpty);
 
   for (final aspect in _rebuildSet) {
-    final contextSet = _subscriberList[aspect];
-    final Set<BuildContext> newSet = {};
+    final elementSet = _subscriberList[aspect];
+    final Set<Element> newSet = {};
 
-    for (final context in contextSet) {
-      final elem = context as Element;
+    for (final elem in elementSet) {
       if (elem.mounted) {
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
-        newSet.add(context);
+        newSet.add(elem);
       }
     }
 
@@ -55,10 +54,10 @@ void _shouldRebuild() {
 class Subscriber extends StatefulWidget {
   /// Method for rx getter: register the widget with aspects.
   static void _addRxAspects(_SubscriberTagSet aspects) {
-    if (_currentBuildingContext != null) {
+    if (_currentBuildingElement != null) {
       for (final aspect in aspects) {
-        final contextList = _subscriberList[aspect];
-        contextList.add(_currentBuildingContext!);
+        final elementList = _subscriberList[aspect];
+        elementList.add(_currentBuildingElement!);
       }
     }
   }
@@ -88,9 +87,9 @@ class Subscriber extends StatefulWidget {
 class _SubscriberState extends State<Subscriber> {
   @override
   Widget build(BuildContext context) {
-    _currentBuildingContext = context;
+    _currentBuildingElement = context as Element;
     final child = widget.builder();
-    _currentBuildingContext = null;
+    _currentBuildingElement = null;
 
     return child;
   }
@@ -112,8 +111,7 @@ class RxImpl<T> {
     final tag = rxTagCounter++;
     rxAspects.add(tag);
 
-    // add context list to _subscriberList
-    // final Set<BuildContext> contextList = {};
+    /// add to _subscriberList
     _subscriberList.add({});
     assert(_subscriberList.length == rxTagCounter);
   }
