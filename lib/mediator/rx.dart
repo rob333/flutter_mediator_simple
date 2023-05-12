@@ -1,14 +1,16 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/widgets.dart';
 
 import 'dart:async';
 
-typedef SubscriberTag = int;
-typedef SubscriberTagSet = Set<SubscriberTag>;
+typedef _SubscriberTag = int;
+typedef _SubscriberTagSet = Set<_SubscriberTag>;
 typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level functions
 final List<Set<BuildContext>> _subscriberList = [];
-final SubscriberTagSet _rebuildSet = {};
+final _SubscriberTagSet _rebuildSet = {};
 
 BuildContext? _currentBuildingContext;
 bool _isSetRebuild = false;
@@ -31,18 +33,19 @@ void _shouldRebuild() {
 
   for (final aspect in _rebuildSet) {
     final contextSet = _subscriberList[aspect];
-    final cloneSet = [...contextSet];
+    final Set<BuildContext> newSet = {};
 
-    for (final context in cloneSet) {
+    for (final context in contextSet) {
       final elem = context as Element;
       if (elem.mounted) {
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
-      } else {
-        contextSet.remove(context);
+        newSet.add(context);
       }
     }
+
+    _subscriberList[aspect] = newSet;
   }
 }
 
@@ -51,7 +54,7 @@ void _shouldRebuild() {
 /// To register Mediator Variables for automatic rebuild.
 class Subscriber extends StatefulWidget {
   /// Method for rx getter: register the widget with aspects.
-  static void _addRxAspects(SubscriberTagSet aspects) {
+  static void _addRxAspects(_SubscriberTagSet aspects) {
     if (_currentBuildingContext != null) {
       for (final aspect in aspects) {
         final contextList = _subscriberList[aspect];
@@ -61,7 +64,7 @@ class Subscriber extends StatefulWidget {
   }
 
   /// Method for rx setter: notify to rebuild widget with aspects.
-  static void setToRebuild(SubscriberTagSet aspects) {
+  static void setToRebuild(_SubscriberTagSet aspects) {
     _rebuildSet.addAll(aspects);
     if (!_isSetRebuild) {
       _isSetRebuild = true;
@@ -98,10 +101,10 @@ class _SubscriberState extends State<Subscriber> {
 /// ***
 class RxImpl<T> {
   /// Member:
-  static SubscriberTag rxTagCounter = 0;
+  static _SubscriberTag rxTagCounter = 0;
 
   // Aspects attached to the Mediator Variable
-  final SubscriberTagSet rxAspects = {};
+  final _SubscriberTagSet rxAspects = {};
 
   /// Constructor of RxImpl
   RxImpl(this._value) {
