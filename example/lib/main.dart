@@ -176,6 +176,16 @@ class IntPage extends StatelessWidget {
               );
             },
           ),
+          Container(
+            height: 3,
+            width: 150,
+            alignment: Alignment.center,
+            // color: const Color.fromARGB(255, 54, 48, 44),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              color: Color.fromARGB(255, 55, 45, 0),
+            ),
+          ),
           Subscriber(
             builder: () {
               return Text(
