@@ -37,10 +37,10 @@ void _shouldRebuild() {
 
     for (final elem in elementSet) {
       if (elem.mounted) {
+        newSet.add(elem);
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
-        newSet.add(elem);
       }
     }
 
