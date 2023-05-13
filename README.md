@@ -50,7 +50,7 @@ Add the following dependency to `pubspec.yaml` of the flutter app.
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.0.3+1"
+  flutter_mediator_simple: "^1.1.0"
 ```
 
 Import flutter_mediator_simple in files that will be used:
