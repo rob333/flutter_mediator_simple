@@ -95,7 +95,32 @@ class _MyHomePageState extends State<MyHomePage>
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: [
+            Text(widget.title),
+            [
+              Subscriber(
+                builder: () =>
+                    Text("int1:$int1").animate(key: ValueKey(int1)).scale(
+                          duration: 50.ms,
+                          begin: const Offset(0.80, 0.80),
+                        ),
+              ),
+              Subscriber(
+                builder: () =>
+                    Text("int2:$int2").animate(key: ValueKey(int2)).scale(
+                          duration: 50.ms,
+                          begin: const Offset(0.80, 0.80),
+                        ),
+              ),
+              Subscriber(
+                builder: () =>
+                    Text("int3:$int3").animate(key: ValueKey(int3)).scale(
+                          duration: 50.ms,
+                          begin: const Offset(0.80, 0.80),
+                        ),
+              ),
+            ].row(mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+          ].column(),
           bottom: TabBar(
             controller: _tabController,
             tabs: myTabs,
@@ -392,3 +417,40 @@ final names = [
   'Jenson',
   'Piotr',
 ];
+
+extension ListWidgetModifier on List<Widget> {
+  MultiChildRenderObjectWidget row({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return Row(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      children: this,
+    );
+  }
+
+  MultiChildRenderObjectWidget column({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return Column(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      children: this,
+    );
+  }
+
+  MultiChildRenderObjectWidget stack({
+    AlignmentGeometry alignment = AlignmentDirectional.topStart,
+    StackFit fit = StackFit.loose,
+    Clip clipBehavior = Clip.hardEdge,
+  }) {
+    return Stack(
+      alignment: alignment,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      children: this,
+    );
+  }
+}

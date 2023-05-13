@@ -1,19 +1,4 @@
-## 1.1.0
-
-- Minor improvement.
-
-
-## 1.0.3
-
-- Minor improvement.
-
-
-## 1.0.2
-
-- Minor improvement.
-
-
-## 1.0.1
+## 1.1.1
 
 - Minor improvement.
 

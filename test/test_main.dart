@@ -71,7 +71,20 @@ class _MyHomePageState extends State<MyHomePage>
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: [
+            Text(widget.title),
+            [
+              Subscriber(
+                builder: () => Text("int1:$int1"),
+              ),
+              Subscriber(
+                builder: () => Text("int2:$int2"),
+              ),
+              Subscriber(
+                builder: () => Text("int3:$int3"),
+              ),
+            ].row(mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+          ].column(),
           bottom: TabBar(
             controller: _tabController,
             tabs: myTabs,
@@ -204,6 +217,43 @@ class ListPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+extension ListWidgetModifier on List<Widget> {
+  MultiChildRenderObjectWidget row({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return Row(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      children: this,
+    );
+  }
+
+  MultiChildRenderObjectWidget column({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return Column(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      children: this,
+    );
+  }
+
+  MultiChildRenderObjectWidget stack({
+    AlignmentGeometry alignment = AlignmentDirectional.topStart,
+    StackFit fit = StackFit.loose,
+    Clip clipBehavior = Clip.hardEdge,
+  }) {
+    return Stack(
+      alignment: alignment,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      children: this,
     );
   }
 }

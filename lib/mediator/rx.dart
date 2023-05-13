@@ -33,18 +33,30 @@ void _shouldRebuild() {
 
   for (final aspect in _rebuildSet) {
     final elementSet = _subscriberList[aspect];
-    final Set<Element> newSet = {};
 
-    for (final elem in elementSet) {
+    var i = 0;
+    while (i < elementSet.length) {
+      final elem = elementSet.elementAt(i);
       if (elem.mounted) {
-        newSet.add(elem);
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
+        i++;
+      } else {
+        // debugPrint("before remove: $elementSet");
+        elementSet.remove(elem);
+        // debugPrint("after remove: $elementSet");
       }
     }
-
-    _subscriberList[aspect] = newSet;
+    // for (final elem in elementSet) {
+    //   if (elem.mounted) {
+    //     newSet.add(elem);
+    //     if (!elem.dirty) {
+    //       elem.markNeedsBuild();
+    //     }
+    //   }
+    // }
+    // _subscriberList[aspect] = newSet;
   }
 }
 

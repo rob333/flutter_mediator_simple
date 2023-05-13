@@ -1,6 +1,6 @@
 name: flutter_mediator_simple
 description: A state management package for flutter. Simple, efficient and easy to use.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/rob333/flutter_mediator_simple
 
 environment:
