@@ -176,6 +176,14 @@ class IntPage extends StatelessWidget {
               );
             },
           ),
+          Subscriber(
+            builder: () {
+              return Text(
+                'sum: ${int1 + int2 + int3}',
+                style: Theme.of(context).textTheme.headlineLarge,
+              );
+            },
+          ),
         ],
       ),
     );
