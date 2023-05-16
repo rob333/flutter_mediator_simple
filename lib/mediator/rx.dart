@@ -15,6 +15,16 @@ final _SubscriberTagSet _rebuildSet = {};
 Element? _currentBuildingElement;
 bool _isSetRebuild = false;
 
+/// Method for Rx getter: register the widget with aspects.
+void _addRxAspects(_SubscriberTagSet aspects) {
+  if (_currentBuildingElement != null) {
+    for (final aspect in aspects) {
+      final elements = _subscriberList[aspect];
+      elements.add(_currentBuildingElement!);
+    }
+  }
+}
+
 void _regFutureQueue() {
   assert(_isSetRebuild == true);
   // scheduleMicrotask(() {
@@ -32,19 +42,19 @@ void _shouldRebuild() {
   assert(_rebuildSet.isNotEmpty);
 
   for (final aspect in _rebuildSet) {
-    final elementSet = _subscriberList[aspect];
+    final elements = _subscriberList[aspect];
 
     var i = 0;
-    while (i < elementSet.length) {
-      final elem = elementSet.elementAt(i);
+    while (i < elements.length) {
+      final elem = elements.elementAt(i);
       if (elem.mounted) {
+        i++;
         if (!elem.dirty) {
           elem.markNeedsBuild();
         }
-        i++;
       } else {
         // debugPrint("before remove: $elementSet");
-        elementSet.remove(elem);
+        elements.remove(elem);
         // debugPrint("after remove: $elementSet");
       }
     }
@@ -64,16 +74,6 @@ void _shouldRebuild() {
 ///
 /// To register Mediator Variables for automatic rebuild.
 class Subscriber extends StatefulWidget {
-  /// Method for rx getter: register the widget with aspects.
-  static void _addRxAspects(_SubscriberTagSet aspects) {
-    if (_currentBuildingElement != null) {
-      for (final aspect in aspects) {
-        final elementList = _subscriberList[aspect];
-        elementList.add(_currentBuildingElement!);
-      }
-    }
-  }
-
   /// Method for rx setter: notify to rebuild widget with aspects.
   static void setToRebuild(_SubscriberTagSet aspects) {
     _rebuildSet.addAll(aspects);
@@ -133,7 +133,7 @@ class RxImpl<T> {
 
   /// Getter of the Rx Object:
   T get value {
-    Subscriber._addRxAspects(rxAspects);
+    _addRxAspects(rxAspects);
     return _value;
   }
 
@@ -156,7 +156,7 @@ class RxImpl<T> {
 
   /// Add the aspects of this Mediator Variable to update set.
   void touch() {
-    Subscriber._addRxAspects(rxAspects);
+    _addRxAspects(rxAspects);
   }
 
   /// To create a Subscriber widget for indirect use of the mediator variable.
