@@ -35,6 +35,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [Use Case 1: Mediator Variable of type `Int`](#use-case-1-mediator-variable-of-type-int)
   - [Use Case 2: Mediator Variable of type `List`](#use-case-2-mediator-variable-of-type-list)
   - [Use Case 3: Indirect use of Mediator Variable and Persistence](#use-case-3-indirect-use-of-mediator-variable-and-persistence)
+  - [Use Case 4: Computed Mediator Variable](#use-case-4-computed-mediator-variable)
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
   - [VS Code Snippet](#vs-code-snippet)
@@ -76,7 +77,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 
 ## Use Case 1: Mediator Variable of type `Int`
 
-Step 1: Declare a mediator variable `_int1` in [var.dart][example/lib/var.dart].
+Step 1: Declare the mediator variable `_int1` in [var.dart][example/lib/var.dart].
 
 ```dart
 // Mediator Variable: int1
@@ -101,7 +102,7 @@ Step 2: Create a `Subscriber` widget using `int1` which is `_int1.value`.
           ),
 ```
 
-Update `int1` => rebuild automatically.
+Update `int1` will rebuild corresponding Subscriber widgets automatically.
 
 ```dart
 @override
@@ -144,7 +145,7 @@ Update `int1` => rebuild automatically.
 
 ## Use Case 2: Mediator Variable of type `List`
 
-Step 1: Declare a mediator variable `_data` in [var.dart][example/lib/var.dart].
+Step 1: Declare the mediator variable `_data` in [var.dart][example/lib/var.dart].
 
 ```dart
 // Mediator Variable: data
@@ -167,7 +168,7 @@ Step 2: Create a `Subscriber` widget using `data` which is `_data.value`.
         // ...
 ```
 
-Step 3: Implement an update function of `data`.
+Step 3: Implement an update function for `data`.
 
 ```dart
 void updateListItem() {
@@ -231,7 +232,7 @@ flutter:
 
 Step 2: Install the persistence package [shared_preferences](https://pub.dev/packages/shared_preferences)
 
-Step 3: Declare a mediator variable `_locale` and SharedPreferences in [var.dart][example/lib/var.dart].
+Step 3: Declare the mediator variable `_locale` and SharedPreferences in [var.dart][example/lib/var.dart].
 
 ```dart
 /// Locale page
@@ -329,6 +330,48 @@ Step 10: Handle radio status to change locale in class `_RadioGroupState` at [ma
     setState(() {});
   }
 ```
+
+&emsp; [Table of Contents]
+
+
+## Use Case 4: Computed Mediator Variable
+
+Step 1: Declare the computed mediator variable `_sum` with a computed function of compound of mediator variables in [var.dart][example/lib/var.dart].
+
+Specify the return type of the computed function as dynamic if the computed function and the return type will change.
+
+```dart
+/// Computed Mediator Variable: sum
+final _sum = Rx(() => int1 + int2 + int3 as dynamic);
+get sum => _sum.value;
+set sum(value) => _sum.value = value;
+```
+
+Step 2: Create a `Subscriber` widget using `sum` which is `_sum.value`.
+
+```dart
+          Subscriber(
+            builder: () {
+              return Text(
+                'sum(computed): $sum',
+                style: Theme.of(context).textTheme.headlineLarge,
+              );
+            },
+          ),
+```
+
+Step 2a(Optional): Change the computed function if needed.
+
+```dart
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            if (sum is int && sum >= 10) {
+              sum = () => "excess upper bound";
+            }
+            // ...
+          }
+        ),  
+``` 
 
 &emsp; [Table of Contents]
 

@@ -93,7 +93,7 @@ void main() {
     expect(find.text('int3: 4'), findsOneWidget);
     expect(find.text('int3:4'), findsOneWidget);
     expect(find.text('sum: 19'), findsOneWidget);
-    expect(find.text('sum(computed): above upperbound'), findsOneWidget);
+    expect(find.text('sum(computed): excess upper bound'), findsOneWidget);
   });
 
   // testWidgets('Mediator Simple - GridTile increments test',
