@@ -13,7 +13,6 @@ final List<Set<Element>> _subscribersList = [];
 final _SubscriberTagSet _rebuildSet = {};
 
 Element? _currentBuildingElement;
-bool _isSetRebuild = false;
 
 /// Method for Rx getter: register the widget with aspects.
 void _addRxAspects(_SubscriberTagSet aspects) {
@@ -26,15 +25,12 @@ void _addRxAspects(_SubscriberTagSet aspects) {
 }
 
 void _regFutureQueue() {
-  assert(_isSetRebuild == true);
   // scheduleMicrotask(() {
   // Future.value(0).then((value) {
   Future.microtask(() {
     assert(_rebuildSet.isNotEmpty);
-
     _shouldRebuild();
     _rebuildSet.clear();
-    _isSetRebuild = false;
   });
 }
 
@@ -76,11 +72,10 @@ void _shouldRebuild() {
 class Subscriber extends StatefulWidget {
   /// Method for rx setter: notify to rebuild widget with aspects.
   static void setToRebuild(_SubscriberTagSet aspects) {
-    _rebuildSet.addAll(aspects);
-    if (!_isSetRebuild) {
-      _isSetRebuild = true;
+    if (_rebuildSet.isEmpty) {
       _regFutureQueue();
     }
+    _rebuildSet.addAll(aspects);
   }
 
   /// class members:
