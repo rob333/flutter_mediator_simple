@@ -356,45 +356,61 @@ Mediator variable uses setter to automatically notify the rebuild. When it comes
 ## VS Code Snippet
 Use VS Code snippet to help typing the boilerplates.
 Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnippet],
+- `getset` - Getter/Setter for Mediator Variable
+- `cgetset` - Getter/Setter for Computed Mediator Variable
+- `sub1` - Create a Subscriber Widget (Arrow Function)
+- `subs` - Create a Subscriber Widget (Multiline)
 ```json
 {
-	"Getter/Setter for Flutter Mediator": {
-		"prefix": "getset",
-		"body": [
-		  "// Mediator Variable: ${1:var}",
-		  "final _${1:var} = ${2:initialValue}.rx;",
-		  "${3:type} get $1 => _${1:var}.value;",
-		  "set $1(${3:type} value) => _${1:var}.value = value;",
-		  "SubscriberFn get ${1:var}Subscribe => _${1:var}.subscribe;",
+  "Getter/Setter for Mediator Variable": {
+    "prefix": "getset",
+    "body": [
+      "/// Mediator Variable: ${1:var}",
+      "final _${1:var} = ${2:initialValue}.rx;",
+      "${3:type} get $1 => _${1:var}.value;",
+      "set $1(${3:type} value) => _${1:var}.value = value;",
+      "SubscriberFn get ${1:var}Subscribe => _${1:var}.subscribe;",
       "${3:type} get ${1:var}Notify => _${1:var}.notify;",
-		  "$0"
-		],
-		"description": "Getter/Setter for Flutter Mediator"
-	},
-	
-	"Create a Subscriber Widget (Arrow Function)": {
-		"prefix": "sub1",
-		"body": [
-		  "${1:Subscriber}(",
-		  "\tbuilder: () => ${2:Text}(\"$3\"),",
-		  "),",
-		  "$0"
-		],
-		"description": "Create a Subscriber Widget (Arrow Function)"
-	},
+      "$0"
+    ],
+    "description": "Getter/Setter for Mediator Variable"
+  },
 
-	"Create a Subscriber Widget (Multiline)": {
-		"prefix": "subs",
-		"body": [
-		  "${1:Subscriber}(",
-		  "\tbuilder: () {",
-		  "\t\treturn ${2:Text}(\"$3\");",
-		  "\t},",
-		  "),",
-		  "$0"
-		],
-		"description": "Create a Subscriber Widget (Multiline)"
-	}
+  "Getter/Setter for Computed Mediator Variable": {
+    "prefix": "cgetset",
+    "body": [
+      "/// Computed Mediator Variable: ${1:var}",
+      "final _${1:var} = Rx(() => ${2:initialValue});",
+      "get $1 => _${1:var}.value;",
+      "set $1(value) => _${1:var}.value = value;",
+      "$0"
+    ],
+    "description": "Getter/Setter for Computed Mediator Variable"
+  },
+  
+  "Create a Subscriber Widget (Arrow Function)": {
+    "prefix": "sub1",
+    "body": [
+      "${1:Subscriber}(",
+      "\tbuilder: () => ${2:Text}(\"$3\"),",
+      "),",
+      "$0"
+    ],
+    "description": "Create a Subscriber Widget (Arrow Function)"
+  },
+
+  "Create a Subscriber Widget (Multiline)": {
+    "prefix": "subs",
+    "body": [
+      "${1:Subscriber}(",
+      "\tbuilder: () {",
+      "\t\treturn ${2:Text}(\"$3\");",
+      "\t},",
+      "),",
+      "$0"
+    ],
+    "description": "Create a Subscriber Widget (Multiline)"
+  },
 }
 ```
 
