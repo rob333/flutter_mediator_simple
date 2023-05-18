@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mediator_simple/flutter_mediator_simple.dart';
 
-// Mediator Variable: int1
+/// Mediator Variable: int1
 final _int1 = 0.rx; // or `final _int1 = Rx(0);`
 int get int1 => _int1.value;
 set int1(value) => _int1.value = value;
@@ -26,7 +26,7 @@ get sum => _sum.value;
 set sum(value) => _sum.value = value;
 
 /// List page
-// Mediator Variable: data
+/// Mediator Variable: data
 final _data = <ListItem>[].rx; //or `RxList(<ListItem>[]);`
 List<ListItem> get data => _data.value;
 set data(List<ListItem> value) => _data.value = value;
@@ -85,7 +85,7 @@ initPersistence() async {
   _locale = loc.rx; // make _locale a mediator variable of type `Rx<String>`
 }
 
-// Mediator Variable: locale
+/// Mediator Variable: locale
 String get locale => _locale.value;
 set locale(String value) {
   _locale.value = value;

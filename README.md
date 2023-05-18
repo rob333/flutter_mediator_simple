@@ -80,7 +80,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 Step 1: Declare the mediator variable `_int1` in [var.dart][example/lib/var.dart].
 
 ```dart
-// Mediator Variable: int1
+/// Mediator Variable: int1
 final _int1 = 0.rx; // or `final _int1 = Rx(0);`
 int get int1 => _int1.value;
 set int1(value) => _int1.value = value;
@@ -148,7 +148,7 @@ Update `int1` will rebuild corresponding Subscriber widgets automatically.
 Step 1: Declare the mediator variable `_data` in [var.dart][example/lib/var.dart].
 
 ```dart
-// Mediator Variable: data
+/// Mediator Variable: data
 final _data = <ListItem>[].rx; //or `RxList(<ListItem>[]);`
 List<ListItem> get data => _data.value;
 set data(List<ListItem> value) => _data.value = value;
@@ -184,7 +184,7 @@ void updateListItem() {
 }
 ```
 
-Use `notify` to notify the Subscribe widget to rebuild when the mediator variable is updated.
+Use `notify` to notify the Subscribe widget to rebuild when the type of the mediator variable is a class and add items by method.
 
 &emsp; [Table of Contents]
 
@@ -338,7 +338,7 @@ Step 10: Handle radio status to change locale in class `_RadioGroupState` at [ma
 
 Step 1: Declare the computed mediator variable `_sum` with a computed function of compound of mediator variables in [var.dart][example/lib/var.dart].
 
-Specify the return type of the computed function as dynamic if the computed function and the return type will change.
+Specify the return type of the computed function as dynamic if the return type along with the function will change.
 
 ```dart
 /// Computed Mediator Variable: sum
@@ -360,7 +360,7 @@ Step 2: Create a `Subscriber` widget using `sum` which is `_sum.value`.
           ),
 ```
 
-Step 2a(Optional): Change the computed function if needed.
+Step 2a(Optional): Change the computed function when needed.
 
 ```dart
         floatingActionButton: FloatingActionButton(
@@ -389,9 +389,9 @@ For example, the locale use case.
 ## `notify`
 Notify to rebuild with the aspects of the mediator variable.
 
-Used when the type of the mediator variable is of type `Class`.
+Used when the type of the mediator variable is a `Class`.
 
-Mediator variable uses setter to automatically notify the rebuild. When it comes to a class variable and adds item by method, then `notify` is needed to inform the rebuild.
+Mediator variable uses setter to automatically notify the rebuild. When it comes to a class value and adds item by method, then `notify` is needed to inform the rebuild.
 
 &emsp; [Table of Contents]
 
@@ -462,7 +462,7 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
 
 
 ## State Management with Animation
-By using [flutter_animate], animation can easily add to the mediator variable. If animation is needed every time the mediator variable changes, just add a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
+By using [flutter_animate] animation can easily add to the mediator variable. If animation is needed every time the mediator variable changes, just add a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
 ```dart
   Subscriber(
     builder: () {
