@@ -9,7 +9,7 @@ typedef _SubscriberTagSet = Set<_SubscriberTag>;
 typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level functions
-final List<Set<Element>> _subscriberList = [];
+final List<Set<Element>> _subscribersList = [];
 final _SubscriberTagSet _rebuildSet = {};
 
 Element? _currentBuildingElement;
@@ -19,7 +19,7 @@ bool _isSetRebuild = false;
 void _addRxAspects(_SubscriberTagSet aspects) {
   if (_currentBuildingElement != null) {
     for (final aspect in aspects) {
-      final elements = _subscriberList[aspect];
+      final elements = _subscribersList[aspect];
       elements.add(_currentBuildingElement!);
     }
   }
@@ -42,7 +42,7 @@ void _shouldRebuild() {
   assert(_rebuildSet.isNotEmpty);
 
   for (final aspect in _rebuildSet) {
-    final elements = _subscriberList[aspect];
+    final elements = _subscribersList[aspect];
 
     var i = 0;
     while (i < elements.length) {
@@ -124,8 +124,8 @@ class RxImpl<T> {
     rxAspects.add(tag);
 
     /// add to _subscriberList
-    _subscriberList.add({});
-    assert(_subscriberList.length == rxTagCounter);
+    _subscribersList.add({});
+    assert(_subscribersList.length == rxTagCounter);
   }
 
   /// The underlying value with type of T
