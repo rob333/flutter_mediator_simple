@@ -8,27 +8,15 @@ final _int1 = 0.rx; // or `final _int1 = Rx(0);`
 int get int1 => _int1.value;
 set int1(value) => _int1.value = value;
 
-void incrementInt1() {
-  int1++;
-}
-
-/// int2
+/// Mediator Variable: int2
 final _int2 = 0.rx; // or `final _int2 = Rx(0);`
 int get int2 => _int2.value;
 set int2(value) => _int2.value = value;
 
-void incrementInt2() {
-  int2++;
-}
-
-/// int3
+/// Mediator Variable: int3
 final _int3 = Rx(0); // or `final _int3 = 0.rx;`
 int get int3 => _int3.value;
 set int3(value) => _int3.value = value;
-
-void incrementInt3() {
-  int3++;
-}
 
 /// List page
 // Mediator Variable: data

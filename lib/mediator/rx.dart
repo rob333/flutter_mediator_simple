@@ -8,21 +8,11 @@ typedef _SubscriberTag = int;
 typedef _SubscriberTagSet = Set<_SubscriberTag>;
 typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
-/// Static Methods/Top Level functions
+/// Static Methods/Top Level Functions
 final List<Set<Element>> _subscribersList = [];
 final _SubscriberTagSet _rebuildSet = {};
 
 Element? _currentBuildingElement;
-
-/// Method for Rx getter: register the widget with aspects.
-void _addRxAspects(_SubscriberTagSet aspects) {
-  if (_currentBuildingElement != null) {
-    for (final aspect in aspects) {
-      final elements = _subscribersList[aspect];
-      elements.add(_currentBuildingElement!);
-    }
-  }
-}
 
 void _regFutureQueue() {
   // scheduleMicrotask(() {
@@ -66,9 +56,9 @@ void _shouldRebuild() {
   }
 }
 
-/// Subscriber widget class
+/// Subscriber Class:
 ///
-/// To register Mediator Variables for automatic rebuild.
+/// To register mediator variables used in the builder function to automatically rebuild the widget.
 class Subscriber extends StatefulWidget {
   /// Method for rx setter: notify to rebuild widget with aspects.
   static void setToRebuild(_SubscriberTagSet aspects) {
@@ -102,38 +92,75 @@ class _SubscriberState extends State<Subscriber> {
   }
 }
 
+///
+/// Class Computed
+///
+class Computed {
+  Function _value;
+
+  Computed(this._value);
+
+  /// Getter of the value.
+  get value {
+    final res = _value();
+    return res;
+  }
+
+  /// Setter of the value.
+  set value(newValue) {
+    assert(newValue is Function);
+    if (newValue != _value) {
+      _value = newValue;
+    }
+  }
+}
+
 /// ***
 /// Class Rx
 /// ***
 class RxImpl<T> {
-  /// Member:
   static _SubscriberTag rxTagCounter = 0;
 
-  // Aspects attached to the Mediator Variable
-  final _SubscriberTagSet rxAspects = {};
-
-  /// Constructor of RxImpl
-  RxImpl(this._value) {
-    assert(_value is! Type);
-    final tag = rxTagCounter++;
-    rxAspects.add(tag);
-
-    /// add to _subscriberList
-    _subscribersList.add({});
-    assert(_subscribersList.length == rxTagCounter);
+  /// Member functions:
+  /// Register the aspects to the widget.
+  void _addRxAspects() {
+    if (_currentBuildingElement != null) {
+      for (final aspect in rxAspects) {
+        final elements = _subscribersList[aspect];
+        elements.add(_currentBuildingElement!);
+      }
+    }
   }
 
-  /// The underlying value with type of T
+  /// Members:
+  /// Aspects attached to this mediator variable.
+  final _SubscriberTagSet rxAspects = {};
+
+  /// Constructor of RxImpl.
+  RxImpl(this._value) {
+    assert(_value is! Type);
+
+    if (_value is! Function) {
+      final tag = rxTagCounter++;
+      rxAspects.add(tag);
+
+      /// add to _subscriberList
+      _subscribersList.add({});
+      assert(_subscribersList.length == rxTagCounter);
+    }
+  }
+
+  /// The underlying value with type of T.
   T _value;
 
-  /// Getter of the Rx Object:
+  /// Getter of the value.
   T get value {
-    _addRxAspects(rxAspects);
+    _addRxAspects();
     return _value;
   }
 
-  /// Setter of the Rx object:
-  /// If the `newValue` != _value, then it will set to rebuild the corresponding widgets.
+  /// Setter of the value.
+  /// If the newValue != _value, then rebuild widgets according to the rxAspects.
   set value(T newValue) {
     if (_value != newValue) {
       _value = newValue;
@@ -141,7 +168,7 @@ class RxImpl<T> {
     }
   }
 
-  /// Notify to rebuild with the aspects of this Mediator Variable.
+  /// Notify to rebuild widgets according to the rxAspects.
   ///
   /// Used when the type of the Mediator Variable is of type `Class`.
   T get notify {
@@ -149,19 +176,15 @@ class RxImpl<T> {
     return _value;
   }
 
-  /// Add the aspects of this Mediator Variable to update set.
-  void touch() {
-    _addRxAspects(rxAspects);
-  }
-
-  /// To create a Subscriber widget for indirect use of the mediator variable.
+  /// Return a Subscriber widget for indirect use of this mediator variable.
   ///
   /// **Indirect use** means the Subscriber widget doesn't use the value
-  ///  of the mediator variable but depends on it.
+  ///  of this mediator variable but depends on it.
   Widget subscribe(Widget Function() builder, {Key? key}) {
     wrapFn() {
-      touch();
-      return builder();
+      _addRxAspects();
+      final widget = builder();
+      return widget;
     }
 
     return Subscriber(
@@ -170,17 +193,17 @@ class RxImpl<T> {
     );
   }
 
-  /// Add [other.rxAspects] to the aspects of this Mediator Variable.
+  /// Add [other.rxAspects] to the aspects of this mediator variable.
   void addAspects(RxImpl other) {
     rxAspects.addAll(other.rxAspects);
   }
 
-  /// Remove [other.rxAspects] from the aspects of this Mediator Variable.
+  /// Remove [other.rxAspects] from the aspects of this mediator variable.
   void removeAspects(RxImpl other) {
     rxAspects.removeAll(other.rxAspects);
   }
 
-  /// Retain [other.rxAspects] of this Mediator Variable.
+  /// Retain [other.rxAspects] of this mediator variable.
   void retainAspects(RxImpl other) {
     rxAspects.retainAll(other.rxAspects);
   }
@@ -195,7 +218,7 @@ class RxImpl<T> {
 
 /// Class for general Mediator Variables
 /// Rx<T> class
-class Rx<T> extends RxImpl<T> {
+final class Rx<T> extends RxImpl<T> {
   /// Constructor: With `initial` as initial value.
   Rx(T initial) : super(initial);
 }
