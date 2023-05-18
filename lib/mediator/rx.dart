@@ -95,85 +95,98 @@ class _SubscriberState extends State<Subscriber> {
 ///
 /// Class Computed
 ///
-class Computed {
-  Function _value;
+// class Computed {
+//   Function _value;
 
-  Computed(this._value);
+//   Computed(this._value);
 
-  /// Getter of the value.
-  get value {
-    final res = _value();
-    return res;
-  }
+//   /// Getter of the value.
+//   get value {
+//     final res = _value();
+//     return res;
+//   }
 
-  /// Setter of the value.
-  set value(newValue) {
-    assert(newValue is Function);
-    if (newValue != _value) {
-      _value = newValue;
-    }
-  }
-}
+//   /// Setter of the value.
+//   set value(newValue) {
+//     assert(newValue is Function);
+//     if (newValue != _value) {
+//       _value = newValue;
+//     }
+//   }
+// }
 
-/// ***
+/// ********
 /// Class Rx
-/// ***
+/// ********
 class RxImpl<T> {
-  static _SubscriberTag rxTagCounter = 0;
+  static _SubscriberTag tagCounter = 0;
+
+  /// Members:
+  /// Aspects attached to this mediator variable.
+  final _SubscriberTagSet aspects = {};
+
+  /// Constructor of RxImpl.
+  RxImpl(this._value) {
+    assert(_value is! Type);
+    final tag = tagCounter++;
+    aspects.add(tag);
+
+    /// add to _subscriberList
+    _subscribersList.add({});
+    assert(_subscribersList.length == tagCounter);
+  }
 
   /// Member functions:
-  /// Register the aspects to the widget.
-  void _addRxAspects() {
+  /// Register the widget with the aspects.
+  void _addAspects() {
     if (_currentBuildingElement != null) {
-      for (final aspect in rxAspects) {
+      for (final aspect in aspects) {
         final elements = _subscribersList[aspect];
         elements.add(_currentBuildingElement!);
       }
     }
   }
 
-  /// Members:
-  /// Aspects attached to this mediator variable.
-  final _SubscriberTagSet rxAspects = {};
-
-  /// Constructor of RxImpl.
-  RxImpl(this._value) {
-    assert(_value is! Type);
-
-    if (_value is! Function) {
-      final tag = rxTagCounter++;
-      rxAspects.add(tag);
-
-      /// add to _subscriberList
-      _subscribersList.add({});
-      assert(_subscribersList.length == rxTagCounter);
-    }
-  }
-
-  /// The underlying value with type of T.
+  /// Underlying value.
   T _value;
 
   /// Getter of the value.
-  T get value {
-    _addRxAspects();
-    return _value;
+  get value {
+    _addAspects();
+
+    /// WET: getter of value
+    if (_value is! Function) {
+      return _value;
+    }
+    // This is a computed mediator variable.
+    final fn = _value as Function;
+    final res = fn();
+    return res;
   }
 
   /// Setter of the value.
-  /// If the newValue != _value, then rebuild widgets according to the rxAspects.
-  set value(T newValue) {
+  /// If the newValue != _value, then rebuild widgets according to the aspects.
+  set value(newValue) {
     if (_value != newValue) {
       _value = newValue;
-      Subscriber.setToRebuild(rxAspects);
+      Subscriber.setToRebuild(aspects);
     }
   }
 
-  /// Notify to rebuild widgets according to the rxAspects.
+  /// Notify to rebuild widgets according to the aspects.
   ///
   /// Used when the type of the Mediator Variable is of type `Class`.
-  T get notify {
-    Subscriber.setToRebuild(rxAspects);
-    return _value;
+  get notify {
+    Subscriber.setToRebuild(aspects);
+
+    /// WET: getter of value
+    if (_value is! Function) {
+      return _value;
+    }
+    // This is a computed mediator variable.
+    final fn = _value as Function;
+    final res = fn();
+    return res;
   }
 
   /// Return a Subscriber widget for indirect use of this mediator variable.
@@ -182,34 +195,35 @@ class RxImpl<T> {
   ///  of this mediator variable but depends on it.
   Widget subscribe(Widget Function() builder, {Key? key}) {
     wrapFn() {
-      _addRxAspects();
+      _addAspects();
       final widget = builder();
       return widget;
     }
 
-    return Subscriber(
+    final widget = Subscriber(
       key: key,
       builder: wrapFn,
     );
+    return widget;
   }
 
-  /// Add [other.rxAspects] to the aspects of this mediator variable.
+  /// Add [other.aspects] to the aspects of this mediator variable.
   void addAspects(RxImpl other) {
-    rxAspects.addAll(other.rxAspects);
+    aspects.addAll(other.aspects);
   }
 
-  /// Remove [other.rxAspects] from the aspects of this mediator variable.
+  /// Remove [other.aspects] from the aspects of this mediator variable.
   void removeAspects(RxImpl other) {
-    rxAspects.removeAll(other.rxAspects);
+    aspects.removeAll(other.aspects);
   }
 
-  /// Retain [other.rxAspects] of this mediator variable.
+  /// Retain [other.aspects] of this mediator variable.
   void retainAspects(RxImpl other) {
-    rxAspects.retainAll(other.rxAspects);
+    aspects.retainAll(other.aspects);
   }
 
   // /// Clear all the Rx aspects.
-  // void clearRxAspects() => rxAspects.clear();
+  // void clearAspects() => aspects.clear();
 
   //* override method
   @override

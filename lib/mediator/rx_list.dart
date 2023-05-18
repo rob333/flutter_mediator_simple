@@ -17,7 +17,7 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   void operator []=(int index, E val) {
     value[index] = val;
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -34,25 +34,25 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   void add(E item) {
     value.add(item);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void addAll(Iterable<E> item) {
     value.addAll(item);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void insert(int index, E item) {
     value.insert(index, item);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void insertAll(int index, Iterable<E> iterable) {
     value.insertAll(index, iterable);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -62,7 +62,7 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   bool remove(Object? item) {
     final hasRemoved = value.remove(item);
     if (hasRemoved) {
-      Subscriber.setToRebuild(rxAspects);
+      Subscriber.setToRebuild(aspects);
     }
     return hasRemoved;
   }
@@ -70,39 +70,39 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   E removeAt(int index) {
     final item = value.removeAt(index);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
     return item;
   }
 
   @override
   E removeLast() {
     final item = value.removeLast();
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
     return item;
   }
 
   @override
   void removeRange(int start, int end) {
     value.removeRange(start, end);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void removeWhere(bool Function(E) test) {
     value.removeWhere(test);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void clear() {
     value.clear();
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void sort([int Function(E a, E b)? compare]) {
     value.sort(compare);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -149,7 +149,7 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   void fillRange(int start, int end, [E? fillValue]) {
     value.fillRange(start, end, fillValue);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -210,7 +210,7 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   set length(int newLength) {
     value.length = newLength;
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -226,13 +226,13 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   void replaceRange(int start, int end, Iterable<E> replacement) {
     value.replaceRange(start, end, replacement);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void retainWhere(bool Function(E) test) {
     value.retainWhere(test);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -241,19 +241,19 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   @override
   void setAll(int index, Iterable<E> iterable) {
     value.setAll(index, iterable);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
     value.setRange(start, end, iterable, skipCount);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void shuffle([Random? random]) {
     value.shuffle(random);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -313,14 +313,14 @@ class RxList<E> extends RxImpl<List<E>> implements List<E> {
   set first(E value) {
     this[0] = value;
     // value.first = value;
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   set last(E value) {
     this[length - 1] = value;
     // value.last = value;
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 }
 

@@ -1,11 +1,12 @@
 ## 1.1.2
 
-- Add `Computed` class, for compound mediator variables.
+- Upgrade sdk to dart 3.0.0, and use final class.
+- Support mediator variable of type `Function`, to use as a **computed** mediator variable.
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For example,
 ```dart
-final _sum = Computed(() => int1 + int2 + int3);
+final _sum = Rx(() => int1 + int2 + int3 as dynamic); // use `dynamic` if will change the return type
 get sum => _sum.value;
 set sum(value) => _sum.value = value;
 ```

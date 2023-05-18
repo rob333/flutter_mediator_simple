@@ -15,14 +15,14 @@ class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
   @override
   bool add(E newValue) {
     final val = value.add(newValue);
-    if (val) Subscriber.setToRebuild(rxAspects);
+    if (val) Subscriber.setToRebuild(aspects);
     return val;
   }
 
   @override
   void addAll(Iterable<E> item) {
     value.addAll(item);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -31,20 +31,20 @@ class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
   @override
   bool remove(Object? item) {
     final hasRemoved = value.remove(item);
-    if (hasRemoved) Subscriber.setToRebuild(rxAspects);
+    if (hasRemoved) Subscriber.setToRebuild(aspects);
     return hasRemoved;
   }
 
   @override
   void removeWhere(bool Function(E) test) {
     value.removeWhere(test);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void clear() {
     value.clear();
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -194,19 +194,19 @@ class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
   @override
   void removeAll(Iterable<Object?> elements) {
     value.removeAll(elements);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void retainAll(Iterable<Object?> elements) {
     value.retainAll(elements);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void retainWhere(bool Function(E) E) {
     value.retainWhere(E);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override

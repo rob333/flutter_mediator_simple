@@ -11,25 +11,25 @@ class RxMap<K, V> extends RxImpl<Map<K, V>> implements Map<K, V> {
   @override
   void operator []=(K key, V newValue) {
     value[key] = newValue;
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void addAll(Map<K, V> other) {
     value.addAll(other);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void addEntries(Iterable<MapEntry<K, V>> entries) {
     value.addEntries(entries);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
   void clear() {
     value.clear();
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -68,21 +68,21 @@ class RxMap<K, V> extends RxImpl<Map<K, V>> implements Map<K, V> {
   @override
   V putIfAbsent(K key, V Function() ifAbsent) {
     final val = value.putIfAbsent(key, ifAbsent);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
     return val;
   }
 
   @override
   V remove(Object? key) {
     final val = value.remove(key);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
     return val!;
   }
 
   @override
   void removeWhere(bool Function(K, V) test) {
     value.removeWhere(test);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 
   @override
@@ -94,14 +94,14 @@ class RxMap<K, V> extends RxImpl<Map<K, V>> implements Map<K, V> {
   @override
   V update(K key, V Function(V) update, {V Function()? ifAbsent}) {
     final val = value.update(key, update, ifAbsent: ifAbsent);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
     return val;
   }
 
   @override
   void updateAll(V Function(K, V) update) {
     value.updateAll(update);
-    Subscriber.setToRebuild(rxAspects);
+    Subscriber.setToRebuild(aspects);
   }
 }
 
