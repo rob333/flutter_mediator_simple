@@ -21,7 +21,14 @@ int get int3 => _int3.value;
 set int3(value) => _int3.value = value;
 
 /// Computed Mediator Variable: sum
-final _sum = Rx(() => int1 + int2 + int3 as dynamic);
+// final _sum = Rx(() => int1 + int2 + int3 as dynamic);
+final _sum = Rx(() {
+  final res = int1 + int2 + int3;
+  if (res <= 10) {
+    return res;
+  }
+  return "excess upper bound";
+});
 get sum => _sum.value;
 set sum(value) => _sum.value = value;
 

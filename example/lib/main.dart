@@ -132,9 +132,9 @@ class _MyHomePageState extends State<MyHomePage>
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if (sum is int && sum >= 10) {
-              sum = () => "excess upper bound";
-            }
+            // if (sum is int && sum >= 10) {
+            //   sum = () => "excess upper bound";
+            // }
             switch (_tabController.index) {
               case 0:
                 int1++;

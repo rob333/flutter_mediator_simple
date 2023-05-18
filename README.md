@@ -373,6 +373,18 @@ Step 2a(Optional): Change the computed function when needed.
         ),  
 ``` 
 
+Or, combine into the computed function.
+
+```dart
+final _sum = Rx(() {
+  final res = int1 + int2 + int3;
+  if (res <= 10) {
+    return res;
+  }
+  return "excess upper bound";
+});
+```
+
 &emsp; [Table of Contents]
 
 

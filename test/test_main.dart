@@ -96,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage>
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if (sum is int && sum >= 10) {
-              sum = () => "excess upper bound";
+            if (sum2 is int && sum2 >= 10) {
+              sum2 = () => "excess upper bound";
             }
             switch (_tabController.index) {
               case 0:
@@ -187,6 +187,14 @@ class Intpage extends StatelessWidget {
             builder: () {
               return Text(
                 'sum(computed): $sum',
+                style: Theme.of(context).textTheme.headlineLarge,
+              );
+            },
+          ),
+          Subscriber(
+            builder: () {
+              return Text(
+                'sum2(computed): $sum2',
                 style: Theme.of(context).textTheme.headlineLarge,
               );
             },
