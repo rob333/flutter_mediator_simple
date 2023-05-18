@@ -180,6 +180,14 @@ class Intpage extends StatelessWidget {
               );
             },
           ),
+          Subscriber(
+            builder: () {
+              return Text(
+                'sum(computed): $sum',
+                style: Theme.of(context).textTheme.headlineLarge,
+              );
+            },
+          ),
         ],
       ),
     );

@@ -18,6 +18,11 @@ final _int3 = Rx(0); // or `final _int3 = 0.rx;`
 int get int3 => _int3.value;
 set int3(value) => _int3.value = value;
 
+/// Computed Mediator Variable: sum
+final _sum = Computed(() => int1 + int2 + int3);
+get sum => _sum.value;
+set sum(value) => _sum.value = value;
+
 /// List page
 // Mediator Variable: data
 final _data = <ListItem>[].rx; //or `RxList(<ListItem>[]);`

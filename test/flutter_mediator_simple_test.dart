@@ -10,8 +10,10 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     // Verify that our counter starts at 0.
-    expect(find.textContaining(': 0'), findsNWidgets(4));
+    expect(find.textContaining(': 0'), findsNWidgets(5));
+    expect(find.textContaining(':0'), findsNWidgets(3));
     expect(find.textContaining(': 1'), findsNothing);
+    expect(find.textContaining(':1'), findsNothing);
 
     // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
@@ -23,6 +25,7 @@ void main() {
     expect(find.text('int1: 2'), findsOneWidget);
     expect(find.text('int1:2'), findsOneWidget);
     expect(find.text('sum: 2'), findsOneWidget);
+    expect(find.text('sum(computed): 2'), findsOneWidget);
 
     // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
@@ -33,6 +36,7 @@ void main() {
     expect(find.text('int1: 3'), findsOneWidget);
     expect(find.text('int1:3'), findsOneWidget);
     expect(find.text('sum: 3'), findsOneWidget);
+    expect(find.text('sum(computed): 3'), findsOneWidget);
 
     /// tab2
     await tester.tap(find.byIcon(Icons.beach_access_sharp));
@@ -41,6 +45,7 @@ void main() {
     expect(find.text('int1: 3'), findsOneWidget);
     expect(find.text('int1:3'), findsOneWidget);
     expect(find.text('sum: 3'), findsOneWidget);
+    expect(find.text('sum(computed): 3'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.tap(find.byIcon(Icons.add));
@@ -51,6 +56,7 @@ void main() {
     expect(find.text('int2: 2'), findsOneWidget);
     expect(find.text('int2:2'), findsOneWidget);
     expect(find.text('sum: 7'), findsOneWidget);
+    expect(find.text('sum(computed): 7'), findsOneWidget);
 
     /// tab3
     await tester.tap(find.byIcon(Icons.brightness_5_sharp));
@@ -61,6 +67,7 @@ void main() {
     expect(find.text('int2: 2'), findsOneWidget);
     expect(find.text('int2:2'), findsOneWidget);
     expect(find.text('sum: 7'), findsOneWidget);
+    expect(find.text('sum(computed): 7'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
@@ -71,6 +78,7 @@ void main() {
     expect(find.text('int3: 1'), findsOneWidget);
     expect(find.text('int3:1'), findsOneWidget);
     expect(find.text('sum: 10'), findsOneWidget);
+    expect(find.text('sum(computed): 10'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
@@ -85,6 +93,7 @@ void main() {
     expect(find.text('int3: 4'), findsOneWidget);
     expect(find.text('int3:4'), findsOneWidget);
     expect(find.text('sum: 19'), findsOneWidget);
+    expect(find.text('sum(computed): 19'), findsOneWidget);
   });
 
   // testWidgets('Mediator Simple - GridTile increments test',
