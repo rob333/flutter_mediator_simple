@@ -6,7 +6,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For example,
 ```dart
-final _sum = Rx(() => int1 + int2 + int3 as dynamic); // use `dynamic` if will change the return type
+final _sum = Rx(() => int1 + int2 + int3 as dynamic); // use `dynamic` if the return type along with the computed function will change
 get sum => _sum.value;
 set sum(value) => _sum.value = value;
 ```
