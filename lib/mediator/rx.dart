@@ -39,9 +39,7 @@ void _shouldRebuild() {
           elem.markNeedsBuild();
         }
       } else {
-        // debugPrint("before remove: $elementSet");
         elements.remove(elem);
-        // debugPrint("after remove: $elementSet");
       }
     }
     // for (final elem in elementSet) {
@@ -91,29 +89,6 @@ class _SubscriberState extends State<Subscriber> {
     return child;
   }
 }
-
-///
-/// Class Computed
-///
-// class Computed {
-//   Function _value;
-
-//   Computed(this._value);
-
-//   /// Getter of the value.
-//   get value {
-//     final res = _value();
-//     return res;
-//   }
-
-//   /// Setter of the value.
-//   set value(newValue) {
-//     assert(newValue is Function);
-//     if (newValue != _value) {
-//       _value = newValue;
-//     }
-//   }
-// }
 
 /// ********
 /// Class Rx
