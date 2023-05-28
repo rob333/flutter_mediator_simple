@@ -2,7 +2,7 @@
 
 - Adds a type alias of Rx class as `Signal`. Allows you to initialize mediator variables with the `Signal` annotation.
   
-For example,
+  For example,
 ```dart
 final _int1 = 0.signal;
 final _int2 = Signal(0); 
@@ -17,7 +17,7 @@ final _sum = Signal(() => int1 + int2 + int3);
 - Upgrade sdk to dart 3.0.0, and use final class.
 - Support mediator variable of type `Function`, to use as a **computed** mediator variable.
 
-For example,
+  For example,
 ```dart
 final _sum = Rx(() => int1 + int2 + int3 as dynamic); // use `dynamic` if the return type along with the computed function will change
 get sum => _sum.value;
