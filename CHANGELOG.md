@@ -1,3 +1,17 @@
+## 1.1.3
+
+- Adds a type alias of Rx class as `Signal`. Allows you to initialize mediator variables with the `Signal` annotation.
+  
+  For example,
+  ```dart
+  final _int1 = 0.signal;
+  final _int2 = Signal(0); 
+  final _int3 = Signal(0); 
+
+  final _sum = Signal(() => int1 + int2 + int3);
+  ```
+
+
 ## 1.1.2
 
 - Upgrade sdk to dart 3.0.0, and use final class.

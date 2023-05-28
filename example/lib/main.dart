@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage>
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // if (sum is int && sum >= 10) {
-            //   sum = () => "excess upper bound";
+            //   sum = () => "excess upper bound(${int1+int2+in3})";
             // }
             switch (_tabController.index) {
               case 0:
@@ -254,16 +254,20 @@ class ListPage extends StatelessWidget {
                       : 10),
           itemBuilder: (context, index) {
             final item = data[index];
-            return Padding(
+            final widget = Padding(
               padding: const EdgeInsets.all(7.0),
               child: Card(
                 color: item.color,
-                child: GridTile(
-                  footer: Text(item.units.toString()),
-                  child: Text(item.item),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: GridTile(
+                    footer: Text("${item.units}"),
+                    child: Text(item.item),
+                  ),
                 ),
-              ),
+              ).animate().fade(duration: 125.ms).scale(delay: 125.ms),
             );
+            return widget;
           },
         ),
       ),

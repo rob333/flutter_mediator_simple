@@ -24,6 +24,14 @@
 
 Flutter Mediator Simple is a state management package for flutter. Simple, efficient and easy to use.
 
+<table border="0" align="center">
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/rob333/flutter_mediator_simple/main/flutter_mediator_simple.webp">
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## Table of Contents
@@ -38,6 +46,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [Use Case 4: Computed Mediator Variable](#use-case-4-computed-mediator-variable)
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
+  - [`Signal`](#signal)
   - [VS Code Snippet](#vs-code-snippet)
   - [State Management with Animation](#state-management-with-animation)
   - [Changelog](#changelog)
@@ -51,7 +60,7 @@ Add the following dependency to `pubspec.yaml` of the flutter app.
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.1.2"
+  flutter_mediator_simple: "^1.1.3"
 ```
 
 Import flutter_mediator_simple in files that will be used:
@@ -404,6 +413,22 @@ Notify to rebuild with the aspects of the mediator variable.
 Used when the type of the mediator variable is a `Class`.
 
 Mediator variable uses setter to automatically notify the rebuild. When it comes to a class value and adds item by method, then `notify` is needed to inform the rebuild.
+
+&emsp; [Table of Contents]
+
+
+## `Signal`
+
+Mediator variables can be initialled by the `Signal` annotation, through type alias.
+
+For example,
+```dart
+final _int1 = 0.signal;
+final _int2 = Signal(0); 
+final _int3 = Signal(0); 
+// computed mediator variable
+final _sum = Signal(() => int1 + int2 + int3);
+```
 
 &emsp; [Table of Contents]
 

@@ -9,7 +9,7 @@ int get int1 => _int1.value;
 set int1(value) => _int1.value = value;
 
 /// Mediator Variable: int2
-final _int2 = 0.rx; // or `final _int2 = Rx(0);`
+final _int2 = 0.signal; // or `final _int2 = Signal(0);`
 int get int2 => _int2.value;
 set int2(value) => _int2.value = value;
 
@@ -24,13 +24,13 @@ final _sum = Rx(() {
   if (res <= 10) {
     return res;
   }
-  return "excess upper bound";
+  return "excess upper bound($res)";
 });
 get sum => _sum.value;
 set sum(value) => _sum.value = value;
 
 /// Computed Mediator Variable: sum2
-final _sum2 = Rx(() => int1 + int2 + int3 as dynamic);
+final _sum2 = Signal(() => int1 + int2 + int3 as dynamic);
 get sum2 => _sum2.value;
 set sum2(value) => _sum2.value = value;
 

@@ -219,3 +219,11 @@ class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
 extension RxSetExt<E> on Set<E> {
   RxSet<E> get rx => RxSet<E>(this);
 }
+
+/// type alias
+typedef SignalSet<T> = RxSet<T>;
+
+/// `signal` extension of RxSet
+extension SignalSetExt<E> on Set<E> {
+  SignalSet<E> get signal => SignalSet<E>(this);
+}

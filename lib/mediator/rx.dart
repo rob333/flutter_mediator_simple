@@ -56,7 +56,7 @@ void _shouldRebuild() {
 
 /// Subscriber Class:
 ///
-/// To register mediator variables used in the builder function to automatically rebuild the widget.
+/// Mediator variables used in the builder function will automatically rebuild the widget when updated.
 class Subscriber extends StatefulWidget {
   /// Method for rx setter: notify to rebuild widget with aspects.
   static void setToRebuild(_SubscriberTagSet aspects) {
@@ -217,4 +217,13 @@ final class Rx<T> extends RxImpl<T> {
 extension RxExt<T> on T {
   /// Returns a `Rx` instace with [this] of type `T` as the initial value.
   Rx<T> get rx => Rx<T>(this);
+}
+
+/// type alias
+typedef Signal<T> = Rx<T>;
+
+/// Extension for Signal type aliase.
+extension SignalExt<T> on T {
+  /// Returns a `Signal` type alias with [this] of type `T` as the initial value.
+  Signal<T> get signal => Signal<T>(this);
 }
