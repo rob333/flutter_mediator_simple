@@ -375,7 +375,7 @@ Step 2a(Optional): Change the computed function when needed.
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             if (sum is int && sum >= 10) {
-              sum = () => "excess upper bound";
+              sum = () => "excess upper bound($sum)";
             }
             // ...
           }
@@ -390,7 +390,7 @@ final _sum = Rx(() {
   if (res <= 10) {
     return res;
   }
-  return "excess upper bound";
+  return "excess upper bound($res)";
 });
 ```
 
