@@ -1,3 +1,7 @@
+## 1.1.5
+
+- Migrate to Flutter 3.13.0
+
 ## 1.1.3
 
 - Adds a type alias of Rx class as `Signal`. Allows you to initialize mediator variables with the `Signal` annotation.

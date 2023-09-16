@@ -1,8 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/widgets.dart';
-
-import 'dart:async';
 
 typedef _SubscriberTag = int;
 typedef _SubscriberTagSet = Set<_SubscriberTag>;
@@ -10,60 +7,94 @@ typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level Functions
 final List<Set<Element>> _subscribersList = [];
-final _SubscriberTagSet _rebuildSet = {};
-
 Element? _currentBuildingElement;
 
-void _regFutureQueue() {
-  // scheduleMicrotask(() {
-  // Future.value(0).then((value) {
-  Future.microtask(() {
-    assert(_rebuildSet.isNotEmpty);
-    _shouldRebuild();
-    _rebuildSet.clear();
-  });
-}
+/// Deprecated of Flutter 3.13.0
+// final _SubscriberTagSet _rebuildSet = {};
+// void _regFutureQueue() {
+//   // scheduleMicrotask(() {
+//   // Future.value(0).then((value) {
+//   Future.microtask(() {
+//     assert(_rebuildSet.isNotEmpty);
+//     _shouldRebuild();
+//     _rebuildSet.clear();
+//   });
+// }
 
-void _shouldRebuild() {
-  assert(_rebuildSet.isNotEmpty);
+// void _shouldRebuild() {
+//   assert(_rebuildSet.isNotEmpty);
 
-  for (final aspect in _rebuildSet) {
-    final elements = _subscribersList[aspect];
+//   for (final aspect in _rebuildSet) {
+//     final elements = _subscribersList[aspect];
 
-    var i = 0;
-    while (i < elements.length) {
-      final elem = elements.elementAt(i);
-      if (elem.mounted) {
-        i++;
-        if (!elem.dirty) {
-          elem.markNeedsBuild();
-        }
-      } else {
-        elements.remove(elem);
-      }
-    }
-    // for (final elem in elementSet) {
-    //   if (elem.mounted) {
-    //     newSet.add(elem);
-    //     if (!elem.dirty) {
-    //       elem.markNeedsBuild();
-    //     }
-    //   }
-    // }
-    // _subscriberList[aspect] = newSet;
-  }
-}
+//     var i = 0;
+//     while (i < elements.length) {
+//       final elem = elements.elementAt(i);
+//       if (elem.mounted) {
+//         // debugPrint("$elem exists");
+//         i++;
+//         if (!elem.dirty) {
+//           // debugPrint("$elem mark rebuild");
+//           elem.markNeedsBuild();
+//         }
+//       } else {
+//         // debugPrint("$elem remove");
+//         elements.remove(elem);
+//       }
+//     }
+//     // for (final elem in elementSet) {
+//     //   if (elem.mounted) {
+//     //     newSet.add(elem);
+//     //     if (!elem.dirty) {
+//     //       elem.markNeedsBuild();
+//     //     }
+//     //   }
+//     // }
+//     // _subscriberList[aspect] = newSet;
+//   }
+// }
 
 /// Subscriber Class:
 ///
 /// Mediator variables used in the builder function will automatically rebuild the widget when updated.
 class Subscriber extends StatefulWidget {
-  /// Method for rx setter: notify to rebuild widget with aspects.
+  // /// Method for rx setter: notify to rebuild widget with aspects.
   static void setToRebuild(_SubscriberTagSet aspects) {
-    if (_rebuildSet.isEmpty) {
-      _regFutureQueue();
+    for (final aspect in aspects) {
+      final elements = _subscribersList[aspect];
+
+      var i = 0;
+      while (i < elements.length) {
+        final elem = elements.elementAt(i);
+        if (elem.mounted) {
+          // debugPrint("$elem exists");
+          i++;
+          if (!elem.dirty) {
+            // debugPrint("$elem mark rebuild");
+            elem.markNeedsBuild();
+          }
+        } else {
+          // debugPrint("$elem remove");
+          elements.remove(elem);
+        }
+      }
+      //* Deprecated:
+      // for (final elem in elementSet) {
+      //   if (elem.mounted) {
+      //     newSet.add(elem);
+      //     if (!elem.dirty) {
+      //       elem.markNeedsBuild();
+      //     }
+      //   }
+      // }
+      // _subscriberList[aspect] = newSet;
     }
-    _rebuildSet.addAll(aspects);
+
+    /// Deprecated of Flutter 3.13.0
+    //   if (_rebuildSet.isEmpty) {
+    //     _regFutureQueue();
+    //   }
+    //   _rebuildSet.addAll(aspects);
   }
 
   /// class members:
@@ -114,11 +145,9 @@ class RxImpl<T> {
   /// Member functions:
   /// Register the widget with the aspects.
   void _addAspects() {
-    if (_currentBuildingElement != null) {
-      for (final aspect in aspects) {
-        final elements = _subscribersList[aspect];
-        elements.add(_currentBuildingElement!);
-      }
+    for (final aspect in aspects) {
+      final elements = _subscribersList[aspect];
+      elements.add(_currentBuildingElement!);
     }
   }
 
@@ -127,7 +156,9 @@ class RxImpl<T> {
 
   /// Getter of the value.
   get value {
-    _addAspects();
+    if (_currentBuildingElement != null) {
+      _addAspects();
+    }
 
     /// WET: getter of value
     if (_value is! Function) {
@@ -207,7 +238,7 @@ class RxImpl<T> {
 
 /// Class for general Mediator Variables
 /// Rx<T> class
-final class Rx<T> extends RxImpl<T> {
+class Rx<T> extends RxImpl<T> {
   /// Constructor: With `initial` as initial value.
   Rx(T initial) : super(initial);
 }
