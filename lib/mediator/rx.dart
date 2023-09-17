@@ -213,17 +213,17 @@ class RxImpl<T> {
     return widget;
   }
 
-  /// Add [other.aspects] to the aspects of this mediator variable.
+  /// Add `other.aspects` to the aspects of this mediator variable.
   void addAspects(RxImpl other) {
     aspects.addAll(other.aspects);
   }
 
-  /// Remove [other.aspects] from the aspects of this mediator variable.
+  /// Remove `other.aspects` from the aspects of this mediator variable.
   void removeAspects(RxImpl other) {
     aspects.removeAll(other.aspects);
   }
 
-  /// Retain [other.aspects] of this mediator variable.
+  /// Retain `other.aspects` of this mediator variable.
   void retainAspects(RxImpl other) {
     aspects.retainAll(other.aspects);
   }
