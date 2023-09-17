@@ -103,30 +103,30 @@ void main() {
     expect(find.text('sum2(computed): excess upper bound(19)'), findsOneWidget);
   });
 
-  // testWidgets('Mediator Simple - GridTile increments test',
-  //     (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(const MyApp());
+  testWidgets('Mediator Simple - GridTile increments test',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
 
-  //   /// List Tab
-  //   ///
-  //   /// goto list tab
-  //   await tester
-  //       .tap(find.byIcon(Icons.power_input_rounded, skipOffstage: false));
-  //   await tester.pump();
-  //   // Verify that list starts empty.
-  //   expect(find.byType(GridTile, skipOffstage: false), findsNothing);
+    /// List Tab
+    ///
+    /// goto list tab
+    await tester
+        .tap(find.byIcon(Icons.power_input_rounded, skipOffstage: false));
+    await tester.pumpAndSettle();
+    // Verify that list starts empty.
+    expect(find.byType(GridTile, skipOffstage: false), findsNothing);
 
-  //   // Tap the '+' icon and trigger a frame.
-  //   await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
-  //   await tester.pump();
-  //   // Verify that list item incremented.
-  //   expect(find.byType(GridTile, skipOffstage: false), findsOneWidget);
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
+    await tester.pumpAndSettle();
+    // Verify that list item incremented.
+    expect(find.byType(GridTile, skipOffstage: false), findsOneWidget);
 
-  //   // Tap the '+' icon and trigger a frame.
-  //   await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
-  //   await tester.pump();
-  //   // Verify that list item incremented.
-  //   expect(find.byType(GridTile, skipOffstage: false), findsNWidgets(2));
-  // }, skip: false);
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add, skipOffstage: false));
+    await tester.pumpAndSettle();
+    // Verify that list item incremented.
+    expect(find.byType(GridTile, skipOffstage: false), findsNWidgets(2));
+  }, skip: false);
 }
