@@ -38,8 +38,8 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
 
 - [Flutter Mediator Simple](#flutter-mediator-simple)
   - [Table of Contents](#table-of-contents)
-  - [Setting up](#setting-up)
-  - [How to use](#how-to-use)
+  - [Getting started](#getting-started)
+  - [Usage](#usage)
   - [Use Case 1: Mediator Variable of type `Int`](#use-case-1-mediator-variable-of-type-int)
   - [Use Case 2: Mediator Variable of type `List`](#use-case-2-mediator-variable-of-type-list)
   - [Use Case 3: Indirect use of Mediator Variable and Persistence](#use-case-3-indirect-use-of-mediator-variable-and-persistence)
@@ -54,7 +54,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
 
 <hr>
 
-## Setting up
+## Getting started
 
 Add the following dependency to `pubspec.yaml` of the flutter app.
 
@@ -73,7 +73,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 
 &emsp; [Table of Contents]
 
-## How to use
+## Usage
 
 1. Declare variable which needs to be managed with `.rx` suffix, to make it a mediator variable.
    <br>**Suggest to put mediator variables into the file [var.dart][example/lib/var.dart] and then import it(with show, hide capability of the import).**
