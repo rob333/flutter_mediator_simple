@@ -39,6 +39,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
 - [Flutter Mediator Simple](#flutter-mediator-simple)
   - [Table of Contents](#table-of-contents)
   - [Getting started](#getting-started)
+    - [Import it](#import-it)
   - [Usage](#usage)
   - [Use Case 1: Mediator Variable of type `Int`](#use-case-1-mediator-variable-of-type-int)
   - [Use Case 2: Mediator Variable of type `List`](#use-case-2-mediator-variable-of-type-list)
@@ -56,20 +57,34 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
 
 ## Getting started
 
-Add the following dependency to `pubspec.yaml` of the flutter app.
+Run this command:
+
+With Flutter:
+
+```
+ $ flutter pub add flutter_mediator_simple
+```
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.1.3"
+  flutter_mediator_simple: "^1.1.6"
 ```
 
-Import flutter_mediator_simple in files that will be used:
+Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
+
+
+### Import it
+
+Now in your Dart code, you can use:
 
 ```dart
 import 'package:flutter_mediator_simple/flutter_mediator_simple.dart';
 ```
 
 For help getting started with Flutter, view the online [documentation](https://flutter.dev/docs).
+
 
 &emsp; [Table of Contents]
 
