@@ -206,7 +206,7 @@ class Intpage extends StatelessWidget {
 }
 
 class ListPage extends StatelessWidget {
-  const ListPage({Key? key}) : super(key: key);
+  const ListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

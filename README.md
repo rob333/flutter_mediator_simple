@@ -24,9 +24,13 @@
 
 Flutter Mediator Simple is a state management package for flutter. Simple, efficient and easy to use.
 
-<div style="text-align: center">
-  <img src="https://raw.githubusercontent.com/rob333/flutter_mediator_simple/main/flutter_mediator_simple.webp">
-</div>
+<table border="0" align="center">
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/rob333/flutter_mediator_simple/main/flutter_mediator_simple.webp">
+    </td>
+  </tr>
+</table>
 
 ---
 

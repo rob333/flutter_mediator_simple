@@ -3,7 +3,7 @@ import 'dart:math';
 import 'rx.dart';
 
 class RxList<E> extends RxImpl<List<E>> implements List<E> {
-  RxList(List<E> initial) : super(initial);
+  RxList(super.initial);
 
   @override
   Iterator<E> get iterator => value.iterator;

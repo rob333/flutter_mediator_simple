@@ -1,7 +1,7 @@
 import 'rx.dart';
 
 class RxMap<K, V> extends RxImpl<Map<K, V>> implements Map<K, V> {
-  RxMap(Map<K, V> initial) : super(initial);
+  RxMap(super.initial);
 
   @override
   V operator [](Object? key) {

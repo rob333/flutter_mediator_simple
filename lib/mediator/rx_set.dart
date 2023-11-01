@@ -1,7 +1,7 @@
 import 'rx.dart';
 
 class RxSet<E> extends RxImpl<Set<E>> implements Set<E> {
-  RxSet(Set<E> initial) : super(initial);
+  RxSet(super.initial);
 
   @override
   Iterator<E> get iterator => value.iterator;
