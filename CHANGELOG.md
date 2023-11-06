@@ -1,6 +1,6 @@
-## 1.2.0
+## 1.2.1
 
-- Can get the context of Subscriber through the getter `mediatorContext`.
+- Can get the context of Subscriber through the getter `subscriberContext`.
 
 For example:
 ```dart
@@ -8,7 +8,7 @@ Subscriber(
   () {
     return Text(
       'int1: $int1',
-      style: Theme.of(mediatorContext).textTheme.headlineMedium,
+      style: Theme.of(subscriberContext).textTheme.headlineMedium,
     );
   },
 ),

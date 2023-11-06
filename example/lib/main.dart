@@ -176,7 +176,7 @@ class IntPage extends StatelessWidget {
             () {
               return Text(
                 'int1: $int1', // using the `_int1` mediator variable
-                style: Theme.of(mediatorContext).textTheme.headlineMedium,
+                style: Theme.of(subscriberContext).textTheme.headlineMedium,
               ).animate(key: ValueKey(int1)).fade(duration: 125.ms).scale(delay: 125.ms);
             },
           ),
@@ -184,7 +184,7 @@ class IntPage extends StatelessWidget {
             () {
               return Text(
                 'int2: $int2', // using the `_int2` mediator variable
-                style: Theme.of(mediatorContext).textTheme.headlineMedium,
+                style: Theme.of(subscriberContext).textTheme.headlineMedium,
               );
             },
           ),
@@ -192,7 +192,7 @@ class IntPage extends StatelessWidget {
             () {
               return Text(
                 'int3: $int3', // using the `_int3` mediator variable
-                style: Theme.of(mediatorContext).textTheme.headlineMedium,
+                style: Theme.of(subscriberContext).textTheme.headlineMedium,
               );
             },
           ),
@@ -210,7 +210,7 @@ class IntPage extends StatelessWidget {
             () {
               return Text(
                 'sum: ${int1 + int2 + int3}',
-                style: Theme.of(mediatorContext).textTheme.headlineLarge,
+                style: Theme.of(subscriberContext).textTheme.headlineLarge,
               );
             },
           ),
@@ -218,7 +218,7 @@ class IntPage extends StatelessWidget {
             () {
               return Text(
                 'sum(computed): $sum',
-                style: Theme.of(mediatorContext).textTheme.headlineLarge,
+                style: Theme.of(subscriberContext).textTheme.headlineLarge,
               );
             },
           ),
@@ -240,7 +240,7 @@ class ListPage extends StatelessWidget {
         () => GridView.builder(
           itemCount: data.length, // using the `_data` mediator variable
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: (MediaQuery.of(mediatorContext).orientation == Orientation.portrait) ? 5 : 10,
+            crossAxisCount: (MediaQuery.of(subscriberContext).orientation == Orientation.portrait) ? 5 : 10,
           ),
           itemBuilder: (context, index) {
             final item = data[index];

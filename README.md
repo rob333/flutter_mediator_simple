@@ -48,7 +48,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
   - [`Signal`](#signal)
-  - [`mediatorContext`](#mediatorcontext)
+  - [`subscriberContext`](#subscriberContext)
   - [VS Code Snippet](#vs-code-snippet)
   - [State Management with Animation](#state-management-with-animation)
   - [Changelog](#changelog)
@@ -70,7 +70,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.2.0"
+  flutter_mediator_simple: "^1.2.1"
 ```
 
 Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
@@ -121,7 +121,7 @@ Step 2: Create a `Subscriber` widget using `int1` which is `_int1.value`.
       () {
         return Text(
           'int1: $int1', // using the `_int1` mediator variable
-          style: Theme.of(mediatorContext).textTheme.headlineMedium,
+          style: Theme.of(subscriberContext).textTheme.headlineMedium,
         );
       },
     ),
@@ -379,7 +379,7 @@ Step 2: Create a `Subscriber` widget using `sum` which is `_sum.value`.
         () {
           return Text(
             'sum(computed): $sum',
-            style: Theme.of(mediatorContext).textTheme.headlineLarge,
+            style: Theme.of(subscriberContext).textTheme.headlineLarge,
           );
         },
       ),
@@ -449,9 +449,9 @@ final _sum = Signal(() => int1 + int2 + int3);
 &emsp; [Table of Contents]
 
 
-## `mediatorContext`
+## `subscriberContext`
 
-Can get the context of Subscriber through the getter `mediatorContext`.
+Can get the context of Subscriber through the getter `subscriberContext`.
 
 For example:
 ```dart
@@ -459,7 +459,7 @@ Subscriber(
   () {
     return Text(
       'int1: $int1',
-      style: Theme.of(mediatorContext).textTheme.headlineMedium,
+      style: Theme.of(subscriberContext).textTheme.headlineMedium,
     );
   },
 ),
@@ -540,7 +540,7 @@ By using [flutter_animate] animation can easily add to the mediator variable. If
     () {
       return Text(
         'int1: $int1', // using the `_int1` mediator variable
-        style: Theme.of(mediatorContext).textTheme.headlineMedium,
+        style: Theme.of(subscriberContext).textTheme.headlineMedium,
       )
       .animate(key: ValueKey(int1))
       .fade(duration: 125.ms)

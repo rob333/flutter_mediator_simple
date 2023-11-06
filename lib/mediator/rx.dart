@@ -8,9 +8,9 @@ typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 /// Static Methods/Top Level Functions
 final List<Set<Element>> _subscribersList = [];
 final List<Element> _buildingElement = [];
-BuildContext get mediatorContext => _buildingElement.last;
+BuildContext get subscriberContext => _buildingElement.last;
 
-/// Deprecated of Flutter 3.13.0
+/// Deprecated by Flutter 3.13.0
 // final _SubscriberTagSet _rebuildSet = {};
 // void _regFutureQueue() {
 //   // scheduleMicrotask(() {
