@@ -39,8 +39,7 @@ class MyApp extends StatelessWidget {
           ),
           missingTranslationHandler: (key, locale) {
             // ignore: avoid_print
-            print(
-                '--- Missing Key: $key, languageCode: ${locale!.languageCode}');
+            print('--- Missing Key: $key, languageCode: ${locale!.languageCode}');
           },
         ),
         GlobalMaterialLocalizations.delegate,
@@ -58,8 +57,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = [
     const Tab(icon: Icon(Icons.cloud_outlined), text: "int1"),
     const Tab(icon: Icon(Icons.beach_access_sharp), text: "int1,2"),
@@ -99,25 +97,22 @@ class _MyHomePageState extends State<MyHomePage>
             Text(widget.title),
             [
               Subscriber(
-                builder: () =>
-                    Text("int1:$int1").animate(key: ValueKey(int1)).scale(
-                          duration: 50.ms,
-                          begin: const Offset(0.80, 0.80),
-                        ),
+                builder: () => Text("int1:$int1").animate(key: ValueKey(int1)).scale(
+                      duration: 50.ms,
+                      begin: const Offset(0.80, 0.80),
+                    ),
               ),
               Subscriber(
-                builder: () =>
-                    Text("int2:$int2").animate(key: ValueKey(int2)).scale(
-                          duration: 50.ms,
-                          begin: const Offset(0.80, 0.80),
-                        ),
+                builder: () => Text("int2:$int2").animate(key: ValueKey(int2)).scale(
+                      duration: 50.ms,
+                      begin: const Offset(0.80, 0.80),
+                    ),
               ),
               Subscriber(
-                builder: () =>
-                    Text("int3:$int3").animate(key: ValueKey(int3)).scale(
-                          duration: 50.ms,
-                          begin: const Offset(0.80, 0.80),
-                        ),
+                builder: () => Text("int3:$int3").animate(key: ValueKey(int3)).scale(
+                      duration: 50.ms,
+                      begin: const Offset(0.80, 0.80),
+                    ),
               ),
             ].row(mainAxisAlignment: MainAxisAlignment.spaceEvenly),
           ].column(),
@@ -182,10 +177,7 @@ class IntPage extends StatelessWidget {
               return Text(
                 'int1: $int1', // using the `_int1` mediator variable
                 style: Theme.of(context).textTheme.headlineMedium,
-              )
-                  .animate(key: ValueKey(int1))
-                  .fade(duration: 125.ms)
-                  .scale(delay: 125.ms);
+              ).animate(key: ValueKey(int1)).fade(duration: 125.ms).scale(delay: 125.ms);
             },
           ),
           Subscriber(
@@ -237,7 +229,7 @@ class IntPage extends StatelessWidget {
 }
 
 class ListPage extends StatelessWidget {
-  const ListPage({Key? key}) : super(key: key);
+  const ListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -247,11 +239,7 @@ class ListPage extends StatelessWidget {
       body: Subscriber(
         builder: () => GridView.builder(
           itemCount: data.length, // using the `_data` mediator variable
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  (MediaQuery.of(context).orientation == Orientation.portrait)
-                      ? 5
-                      : 10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (MediaQuery.of(context).orientation == Orientation.portrait) ? 5 : 10),
           itemBuilder: (context, index) {
             final item = data[index];
             final widget = Padding(
@@ -276,7 +264,7 @@ class ListPage extends StatelessWidget {
 }
 
 class LocalePage extends StatelessWidget {
-  const LocalePage({Key? key}) : super(key: key);
+  const LocalePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -316,7 +304,7 @@ class LocalePage extends StatelessWidget {
 }
 
 class LocalePanel extends StatelessWidget {
-  const LocalePanel({Key? key}) : super(key: key);
+  const LocalePanel({super.key});
 
   Widget localeTxt(BuildContext context, String name) {
     return SizedBox(
@@ -345,7 +333,7 @@ class LocalePanel extends StatelessWidget {
 }
 
 class RadioGroup extends StatefulWidget {
-  const RadioGroup({Key? key}) : super(key: key);
+  const RadioGroup({super.key});
 
   @override
   // ignore: library_private_types_in_public_api

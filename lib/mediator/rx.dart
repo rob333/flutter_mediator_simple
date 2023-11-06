@@ -7,7 +7,8 @@ typedef SubscriberFn = Widget Function(Widget Function() builder, {Key? key});
 
 /// Static Methods/Top Level Functions
 final List<Set<Element>> _subscribersList = [];
-Element? _currentBuildingElement;
+final List<Element> _buildingElement = [];
+BuildContext get mediatorContext => _buildingElement.last;
 
 /// Deprecated of Flutter 3.13.0
 // final _SubscriberTagSet _rebuildSet = {};
@@ -113,9 +114,9 @@ class Subscriber extends StatefulWidget {
 class _SubscriberState extends State<Subscriber> {
   @override
   Widget build(BuildContext context) {
-    _currentBuildingElement = context as Element;
+    _buildingElement.add(context as Element);
     final child = widget.builder();
-    _currentBuildingElement = null;
+    _buildingElement.removeLast();
 
     return child;
   }
@@ -145,9 +146,10 @@ class RxImpl<T> {
   /// Member functions:
   /// Register the widget with the aspects.
   void _addAspects() {
+    final elem = _buildingElement.last;
     for (final aspect in aspects) {
       final elements = _subscribersList[aspect];
-      elements.add(_currentBuildingElement!);
+      elements.add(elem);
     }
   }
 
@@ -156,7 +158,7 @@ class RxImpl<T> {
 
   /// Getter of the value.
   get value {
-    if (_currentBuildingElement != null) {
+    if (_buildingElement.isNotEmpty) {
       _addAspects();
     }
 

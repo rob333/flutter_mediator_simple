@@ -69,7 +69,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```yaml
 dependencies:
-  flutter_mediator_simple: "^1.1.6"
+  flutter_mediator_simple: "^1.2.0"
 ```
 
 Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
