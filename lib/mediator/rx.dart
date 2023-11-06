@@ -102,9 +102,9 @@ class Subscriber extends StatefulWidget {
   final Widget Function() builder;
 
   /// Contrustor:
-  const Subscriber({
+  const Subscriber(
+    this.builder, {
     super.key,
-    required this.builder,
   });
 
   @override
@@ -209,8 +209,8 @@ class RxImpl<T> {
     }
 
     final widget = Subscriber(
+      wrapFn,
       key: key,
-      builder: wrapFn,
     );
     return widget;
   }

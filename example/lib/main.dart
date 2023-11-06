@@ -97,19 +97,19 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             Text(widget.title),
             [
               Subscriber(
-                builder: () => Text("int1:$int1").animate(key: ValueKey(int1)).scale(
+                () => Text("int1:$int1").animate(key: ValueKey(int1)).scale(
                       duration: 50.ms,
                       begin: const Offset(0.80, 0.80),
                     ),
               ),
               Subscriber(
-                builder: () => Text("int2:$int2").animate(key: ValueKey(int2)).scale(
+                () => Text("int2:$int2").animate(key: ValueKey(int2)).scale(
                       duration: 50.ms,
                       begin: const Offset(0.80, 0.80),
                     ),
               ),
               Subscriber(
-                builder: () => Text("int3:$int3").animate(key: ValueKey(int3)).scale(
+                () => Text("int3:$int3").animate(key: ValueKey(int3)).scale(
                       duration: 50.ms,
                       begin: const Offset(0.80, 0.80),
                     ),
@@ -173,26 +173,26 @@ class IntPage extends StatelessWidget {
             'You have pushed the button this many times:',
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int1: $int1', // using the `_int1` mediator variable
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(mediatorContext).textTheme.headlineMedium,
               ).animate(key: ValueKey(int1)).fade(duration: 125.ms).scale(delay: 125.ms);
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int2: $int2', // using the `_int2` mediator variable
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(mediatorContext).textTheme.headlineMedium,
               );
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int3: $int3', // using the `_int3` mediator variable
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(mediatorContext).textTheme.headlineMedium,
               );
             },
           ),
@@ -207,18 +207,18 @@ class IntPage extends StatelessWidget {
             ),
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'sum: ${int1 + int2 + int3}',
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(mediatorContext).textTheme.headlineLarge,
               );
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'sum(computed): $sum',
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(mediatorContext).textTheme.headlineLarge,
               );
             },
           ),
@@ -237,9 +237,11 @@ class ListPage extends StatelessWidget {
       appBar: AppBar(title: const Text('List Demo')),
       //* Step: Create Subscriber widget
       body: Subscriber(
-        builder: () => GridView.builder(
+        () => GridView.builder(
           itemCount: data.length, // using the `_data` mediator variable
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (MediaQuery.of(context).orientation == Orientation.portrait) ? 5 : 10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: (MediaQuery.of(mediatorContext).orientation == Orientation.portrait) ? 5 : 10,
+          ),
           itemBuilder: (context, index) {
             final item = data[index];
             final widget = Padding(
@@ -278,13 +280,13 @@ class LocalePage extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         Subscriber(
-          builder: () => Text(
+          () => Text(
             'int1: $int1',
             style: const TextStyle(fontSize: 16),
           ),
         ),
         Subscriber(
-          builder: () => Text(
+          () => Text(
             'Data length at the list page ${data.length}',
             style: const TextStyle(fontSize: 16),
           ),

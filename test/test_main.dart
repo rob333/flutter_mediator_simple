@@ -34,8 +34,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = [
     const Tab(icon: Icon(Icons.cloud_outlined), text: "int1"),
     const Tab(icon: Icon(Icons.beach_access_sharp), text: "int1,2"),
@@ -75,13 +74,13 @@ class _MyHomePageState extends State<MyHomePage>
             Text(widget.title),
             [
               Subscriber(
-                builder: () => Text("int1:$int1"),
+                () => Text("int1:$int1"),
               ),
               Subscriber(
-                builder: () => Text("int2:$int2"),
+                () => Text("int2:$int2"),
               ),
               Subscriber(
-                builder: () => Text("int3:$int3"),
+                () => Text("int3:$int3"),
               ),
             ].row(mainAxisAlignment: MainAxisAlignment.spaceEvenly),
           ].column(),
@@ -142,7 +141,7 @@ class Intpage extends StatelessWidget {
             'You have pushed the button this many times:',
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int1: $int1', // using the `_int1` mediator variable
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -150,7 +149,7 @@ class Intpage extends StatelessWidget {
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int2: $int2', // using the `_int2` mediator variable
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -158,7 +157,7 @@ class Intpage extends StatelessWidget {
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'int3: $int3', // using the `_int3` mediator variable
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -176,7 +175,7 @@ class Intpage extends StatelessWidget {
             ),
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'sum: ${int1 + int2 + int3}',
                 style: Theme.of(context).textTheme.headlineLarge,
@@ -184,7 +183,7 @@ class Intpage extends StatelessWidget {
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'sum(computed): $sum',
                 style: Theme.of(context).textTheme.headlineLarge,
@@ -192,7 +191,7 @@ class Intpage extends StatelessWidget {
             },
           ),
           Subscriber(
-            builder: () {
+            () {
               return Text(
                 'sum2(computed): $sum2',
                 style: Theme.of(context).textTheme.headlineLarge,
@@ -214,13 +213,9 @@ class ListPage extends StatelessWidget {
       appBar: AppBar(title: const Text('List Demo')),
       //* Step: Create Subscriber widget
       body: Subscriber(
-        builder: () => GridView.builder(
+        () => GridView.builder(
           itemCount: data.length, // using the `_data` mediator variable
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  (MediaQuery.of(context).orientation == Orientation.portrait)
-                      ? 5
-                      : 10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (MediaQuery.of(context).orientation == Orientation.portrait) ? 5 : 10),
           itemBuilder: (context, index) {
             final item = data[index];
             final card = Card(

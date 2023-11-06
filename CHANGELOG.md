@@ -1,6 +1,21 @@
 ## 1.2.0
 
-- 
+- Can get the context of Subscriber through the getter `mediatorContext`.
+
+For example:
+```dart
+Subscriber(
+  () {
+    return Text(
+      'int1: $int1',
+      style: Theme.of(mediatorContext).textTheme.headlineMedium,
+    );
+  },
+),
+```
+
+- Modify the constructor of Subecriber to `Subecriber(this.builder, {key:Key})`
+
 
 ## 1.1.5
 

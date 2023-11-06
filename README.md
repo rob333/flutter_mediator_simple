@@ -48,6 +48,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
   - [`Signal`](#signal)
+  - [`mediatorContext`](#mediatorcontext)
   - [VS Code Snippet](#vs-code-snippet)
   - [State Management with Animation](#state-management-with-animation)
   - [Changelog](#changelog)
@@ -116,14 +117,14 @@ String get int1Notify => _int1.notify;
 Step 2: Create a `Subscriber` widget using `int1` which is `_int1.value`.
 
 ```dart
-          Subscriber(
-            builder: () {
-              return Text(
-                'int1: $int1', // using the `_int1` mediator variable
-                style: Theme.of(context).textTheme.headlineMedium,
-              );
-            },
-          ),
+    Subscriber(
+      () {
+        return Text(
+          'int1: $int1', // using the `_int1` mediator variable
+          style: Theme.of(mediatorContext).textTheme.headlineMedium,
+        );
+      },
+    ),
 ```
 
 Update `int1` will rebuild corresponding Subscriber widgets automatically.
@@ -187,7 +188,7 @@ Step 2: Create a `Subscriber` widget using `data` which is `_data.value`.
       appBar: AppBar(title: const Text('List Demo')),
         //* Step: Create Subscriber widget
       body: Subscriber(
-        builder: () => GridView.builder(
+        () => GridView.builder(
           itemCount: data.length, // using the `_data` mediator variable
         // ...
 ```
@@ -374,14 +375,14 @@ set sum(value) => _sum.value = value;
 Step 2: Create a `Subscriber` widget using `sum` which is `_sum.value`.
 
 ```dart
-          Subscriber(
-            builder: () {
-              return Text(
-                'sum(computed): $sum',
-                style: Theme.of(context).textTheme.headlineLarge,
-              );
-            },
-          ),
+      Subscriber(
+        () {
+          return Text(
+            'sum(computed): $sum',
+            style: Theme.of(mediatorContext).textTheme.headlineLarge,
+          );
+        },
+      ),
 ```
 
 Step 2a(Optional): Change the computed function when needed.
@@ -448,6 +449,25 @@ final _sum = Signal(() => int1 + int2 + int3);
 &emsp; [Table of Contents]
 
 
+## `mediatorContext`
+
+Can get the context of Subscriber through the getter `mediatorContext`.
+
+For example:
+```dart
+Subscriber(
+  () {
+    return Text(
+      'int1: $int1',
+      style: Theme.of(mediatorContext).textTheme.headlineMedium,
+    );
+  },
+),
+```
+
+&emsp; [Table of Contents]
+
+
 ## VS Code Snippet
 Use VS Code snippet to help typing the boilerplates.
 Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnippet],
@@ -487,7 +507,7 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
     "prefix": "sub1",
     "body": [
       "${1:Subscriber}(",
-      "\tbuilder: () => ${2:Text}(\"$3\"),",
+      "\t() => ${2:Text}(\"$3\"),",
       "),",
       "$0"
     ],
@@ -498,7 +518,7 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
     "prefix": "subs",
     "body": [
       "${1:Subscriber}(",
-      "\tbuilder: () {",
+      "\t() {",
       "\t\treturn ${2:Text}(\"$3\");",
       "\t},",
       "),",
@@ -517,14 +537,14 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
 By using [flutter_animate] animation can easily add to the mediator variable. If animation is needed every time the mediator variable changes, just add a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
 ```dart
   Subscriber(
-    builder: () {
+    () {
       return Text(
         'int1: $int1', // using the `_int1` mediator variable
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(mediatorContext).textTheme.headlineMedium,
       )
-          .animate(key: ValueKey(int1))
-          .fade(duration: 125.ms)
-          .scale(delay: 125.ms);
+      .animate(key: ValueKey(int1))
+      .fade(duration: 125.ms)
+      .scale(delay: 125.ms);
     },
 ```
 
