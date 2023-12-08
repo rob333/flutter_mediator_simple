@@ -1,6 +1,6 @@
 ## 1.2.1
 
-- Can get the context of Subscriber through the getter `subscriberContext`.
+- Can get the context of the current Subscriber through the getter `subscriberContext`.
 
 For example:
 ```dart
