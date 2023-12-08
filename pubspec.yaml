@@ -1,5 +1,5 @@
 name: flutter_mediator_simple
-description: A reactive state management package for Flutter. It's simple, efficient and easy to use.
+description: A signal state management package for Flutter. It's simple, efficient and easy to use.
 version: 1.2.1
 homepage: https://github.com/rob333/flutter_mediator_simple
 

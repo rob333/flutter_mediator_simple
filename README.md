@@ -22,7 +22,7 @@
 
 <br>
 
-Flutter Mediator Simple is a state management package for Flutter. It's simple, efficient and easy to use.
+Flutter Mediator Simple is a signal state management package for Flutter. It's simple, efficient and easy to use.
 
 <table border="0" align="center">
   <tr>
