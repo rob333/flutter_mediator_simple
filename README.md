@@ -15,14 +15,14 @@
     <a href="https://github.com/rob333/flutter_mediator_simple/actions"><img src="https://github.com/rob333/flutter_mediator_simple/workflows/Build/badge.svg" alt="Build Status"></a>
     </td>
     <td>
-    A rework of the Flutter Mediator, simple, efficient and easy to use.
+    A rework of the Flutter Mediator. It's simple, efficient and easy to use.
     </td>
   </tr>
 </table>
 
 <br>
 
-Flutter Mediator Simple is a state management package for flutter. Simple, efficient and easy to use.
+Flutter Mediator Simple is a state management package for Flutter. It's simple, efficient and easy to use.
 
 <table border="0" align="center">
   <tr>
@@ -48,7 +48,7 @@ Flutter Mediator Simple is a state management package for flutter. Simple, effic
   - [`subscribe`](#subscribe)
   - [`notify`](#notify)
   - [`Signal`](#signal)
-  - [`subscriberContext`](#subscriberContext)
+  - [`subscriberContext`](#subscribercontext)
   - [VS Code Snippet](#vs-code-snippet)
   - [State Management with Animation](#state-management-with-animation)
   - [Changelog](#changelog)
@@ -92,7 +92,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 ## Usage
 
 1. Declare variable which needs to be managed with `.rx` suffix, to make it a mediator variable.
-   <br>**Suggest to put mediator variables into the file [var.dart][example/lib/var.dart] and then import it(with show, hide capability of the import).**
+   <br>**Suggests to put mediator variables into the file [var.dart][example/lib/var.dart] and then import it with show, hide capabilities.**
 
 2. Create `Subscriber` widgets. Any mediator variables used inside the `Subscriber` widget will automatically rebuild the widget when updated.
 
@@ -144,9 +144,12 @@ Update `int1` will rebuild corresponding Subscriber widgets automatically.
                 int1++;
                 break;
               case 1:
+                int1++;
                 int2++;
                 break;
               case 2:
+                int1++;
+                int2++;
                 int3++;
                 break;
               case 3:
@@ -398,7 +401,7 @@ Step 2a(Optional): Change the computed function when needed.
         ),  
 ``` 
 
-Or, combine into the computed function.
+Or, combine it into the computed function.
 
 ```dart
 final _sum = Rx(() {
@@ -428,14 +431,14 @@ Notify to rebuild with the aspects of the mediator variable.
 
 Used when the type of the mediator variable is a `Class`.
 
-Mediator variable uses setter to automatically notify the rebuild. When it comes to a class value and adds item by method, then `notify` is needed to inform the rebuild.
+Mediator variable uses setter to automatically notify the rebuild. When it comes to a class and adds items by methods then `notify` is needed to inform the rebuild.
 
 &emsp; [Table of Contents]
 
 
 ## `Signal`
 
-Mediator variables can be initialled by the `Signal` annotation, through type alias.
+Mediator variables can be initialled by the `Signal` annotation. (through type alias)
 
 For example,
 ```dart
@@ -451,7 +454,7 @@ final _sum = Signal(() => int1 + int2 + int3);
 
 ## `subscriberContext`
 
-Can get the context of Subscriber through the getter `subscriberContext`.
+Can get the context of the current Subscriber through the getter `subscriberContext`.
 
 For example:
 ```dart
@@ -534,7 +537,7 @@ Take for example [snippet_Flutter_Mediator__statelessful.code-snippets][vscSnipp
 
 
 ## State Management with Animation
-By using [flutter_animate] animation can easily add to the mediator variable. If animation is needed every time the mediator variable changes, just add a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
+Animations can easily add to the mediator variable by using [flutter_animate]. If animation is needed every time the mediator variable changes, adds a `ValueKey` to the `animate`. For example, [example/lib/main.dart]
 ```dart
   Subscriber(
     () {
@@ -546,6 +549,7 @@ By using [flutter_animate] animation can easily add to the mediator variable. If
       .fade(duration: 125.ms)
       .scale(delay: 125.ms);
     },
+  ),
 ```
 
 
