@@ -114,7 +114,7 @@ get int1Subscribe => _int1.subscribe;
 String get int1Notify => _int1.notify;
 ```
 
-Step 2: Create a `Subscriber` widget using `int1` which is `_int1.value`.
+Step 2: Create a `Subscriber` widget using `int1` which is a `_int1.value`.
 
 ```dart
     Subscriber(
@@ -184,7 +184,7 @@ SubscriberFn get dataSubscribe => _data.subscribe;
 List<ListItem> get dataNotify => _data.notify;
 ```
 
-Step 2: Create a `Subscriber` widget using `data` which is `_data.value`.
+Step 2: Create a `Subscriber` widget using `data` which is a `_data.value`.
 
 ```dart
     return Scaffold(
@@ -375,7 +375,7 @@ get sum => _sum.value;
 set sum(value) => _sum.value = value;
 ```
 
-Step 2: Create a `Subscriber` widget using `sum` which is `_sum.value`.
+Step 2: Create a `Subscriber` widget using `sum` which is a `_sum.value`.
 
 ```dart
       Subscriber(
@@ -446,7 +446,7 @@ final _int1 = 0.signal;
 final _int2 = Signal(0); 
 final _int3 = Signal(0); 
 // computed mediator variable
-final _sum = Signal(() => int1 + int2 + int3);
+final _sum = Signal(() => _int1.value + _int2.value + _int3.value);
 ```
 
 &emsp; [Table of Contents]
